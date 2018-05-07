@@ -1,4 +1,4 @@
-package com.xianduankeji.ktv.base.constants;
+package com.duyun.huishou.housekeeper.constants;
 
 /**
  * @author haoshijing
