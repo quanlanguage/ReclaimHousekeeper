@@ -1,10 +1,9 @@
-package com.duyun.huihsou.housekepper.protal.service.user;
+package com.duyun.huihsou.housekepper.portal.service.user;
 
 
-import com.duyun.huihsou.housekepper.protal.service.IBaseService;
-import com.duyun.huihsou.housekepper.protal.vo.ResData;
+import com.duyun.huihsou.housekepper.portal.service.IBaseService;
+import com.duyun.huihsou.housekepper.portal.vo.ResData;
 import com.duyun.huishou.housekeeper.po.user.User;
-import org.springframework.web.multipart.MultipartFile;
 
 /**
  * @author albert

@@ -1,6 +1,5 @@
-package com.duyun.huihsou.housekepper.protal.controller;
+package com.duyun.huihsou.housekepper.portal.controller;
 
-import com.duyun.huihsou.housekepper.protal.service.user.UserService;
 import com.duyun.huishou.housekeeper.ApiResponse;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

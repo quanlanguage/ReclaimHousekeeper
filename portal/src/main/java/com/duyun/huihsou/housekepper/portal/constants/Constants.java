@@ -1,4 +1,4 @@
-package com.duyun.huihsou.housekepper.protal.constants;
+package com.duyun.huihsou.housekepper.portal.constants;
 
 public final  class Constants {
 

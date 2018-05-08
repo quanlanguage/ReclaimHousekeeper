@@ -1,4 +1,4 @@
-package com.duyun.huihsou.housekepper.protal.vo;
+package com.duyun.huihsou.housekepper.portal.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,8 +1,8 @@
-package com.duyun.huihsou.housekepper.protal.controller;
+package com.duyun.huihsou.housekepper.portal.controller;
 
 
-import com.duyun.huihsou.housekepper.protal.service.auth.AuthService;
-import com.duyun.huihsou.housekepper.protal.service.user.UserService;
+import com.duyun.huihsou.housekepper.portal.service.auth.AuthService;
+import com.duyun.huihsou.housekepper.portal.service.user.UserService;
 import com.duyun.huishou.housekeeper.ApiResponse;
 import com.duyun.huishou.housekeeper.constants.RetCode;
 import org.springframework.beans.factory.annotation.Autowired;

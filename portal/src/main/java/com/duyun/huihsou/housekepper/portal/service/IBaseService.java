@@ -1,4 +1,4 @@
-package com.duyun.huihsou.housekepper.protal.service;
+package com.duyun.huihsou.housekepper.portal.service;
 
 
 /**

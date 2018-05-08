@@ -1,4 +1,4 @@
-package com.duyun.huihsou.housekepper.protal.web;
+package com.duyun.huihsou.housekepper.portal.web;
 
 
 import com.duyun.huishou.housekeeper.ApiResponse;

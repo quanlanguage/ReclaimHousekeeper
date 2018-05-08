@@ -1,4 +1,4 @@
-package com.duyun.huihsou.housekepper.protal.web;
+package com.duyun.huihsou.housekepper.portal.web;
 
 import com.alibaba.fastjson.JSON;
 import com.duyun.huishou.housekeeper.ApiResponse;
@@ -13,9 +13,8 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Objects;
 
-import static com.duyun.huihsou.housekepper.protal.constants.Constants.TICKET;
+import static com.duyun.huihsou.housekepper.portal.constants.Constants.TICKET;
 
 
 /**

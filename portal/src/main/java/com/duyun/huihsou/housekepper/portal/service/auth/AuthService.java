@@ -1,9 +1,9 @@
-package com.duyun.huihsou.housekepper.protal.service.auth;
+package com.duyun.huihsou.housekepper.portal.service.auth;
 
 
 import com.alibaba.fastjson.JSONObject;
-import com.duyun.huihsou.housekepper.protal.service.user.UserService;
-import com.duyun.huihsou.housekepper.protal.vo.ResData;
+import com.duyun.huihsou.housekepper.portal.service.user.UserService;
+import com.duyun.huihsou.housekepper.portal.vo.ResData;
 import com.duyun.huishou.housekeeper.po.user.User;
 import com.duyun.huishou.housekeeper.util.HttpTool;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**

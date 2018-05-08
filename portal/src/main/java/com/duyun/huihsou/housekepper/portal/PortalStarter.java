@@ -1,4 +1,4 @@
-package com.duyun.huihsou.housekepper.protal;
+package com.duyun.huihsou.housekepper.portal;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

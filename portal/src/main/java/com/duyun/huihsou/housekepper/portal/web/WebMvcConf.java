@@ -1,4 +1,4 @@
-package com.duyun.huihsou.housekepper.protal.web;
+package com.duyun.huihsou.housekepper.portal.web;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
