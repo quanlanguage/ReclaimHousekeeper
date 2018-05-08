@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.duyun.huihsou.housekepper.protal.service.user.UserService;
 import com.duyun.huihsou.housekepper.protal.vo.ResData;
 import com.duyun.huishou.housekeeper.po.user.User;
+import com.duyun.huishou.housekeeper.util.HttpTool;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,7 +27,7 @@ import java.util.concurrent.TimeUnit;
 @Service
 @Slf4j
 public class AuthService {
-
+    public static final String SESSION_KEY_API_PREFIX = "https://api.weixin.qq.com/sns/jscode2session?";
     @Value("${wxAppId}")
     private String wxAppId;
 
@@ -38,6 +39,7 @@ public class AuthService {
 
     @Autowired
     RedisTemplate<String, String> redisTemplate;
+
 
     /**
      * 返回客户端凭证
@@ -56,9 +58,9 @@ public class AuthService {
                 if (data.getTicket() != null){
                     //由于每次key都不一样，查询缓存里已有该用户缓存删掉再更新
                     //设置有效时间
-                    List<String> keys = redisTemplate.opsForValue().get(user.getOpenId());
+                    String cacheData  = redisTemplate.opsForValue().get(user.getOpenId());
 
-                    redisTool.set(data.getTicket(), json.toString(), 60 * 60 * 24 * 20, TimeUnit.SECONDS);
+                    redisTemplate.opsForValue().set(data.getTicket(), json.toString(), 60 * 60 * 24 * 20, TimeUnit.SECONDS);
                 }
                 String ticket = data.getTicket();
                 return ticket;
@@ -77,7 +79,7 @@ public class AuthService {
      */
     public ResData getSessionKey(String code){
         //构建session url
-        StringBuilder builder = new StringBuilder(WechatAuth.SESSION_KEY_API_PREFIX);
+        StringBuilder builder = new StringBuilder(SESSION_KEY_API_PREFIX);
         builder.append("appid=" + wxAppId)
                 .append("&secret=" + wxAppSec)
                 .append("&js_code=" + code)

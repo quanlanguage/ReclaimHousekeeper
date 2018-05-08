@@ -1,6 +1,7 @@
 package com.duyun.huihsou.housekepper.protal.web;
 
-import com.xianduankeji.ktv.base.ApiResponse;
+
+import com.duyun.huishou.housekeeper.ApiResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
