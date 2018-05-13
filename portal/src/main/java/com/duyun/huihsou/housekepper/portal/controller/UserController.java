@@ -15,7 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 public class UserController {
 
     @RequestMapping("/bindPhone")
-    public ApiResponse<Boolean> bindPhone(HttpServletRequest request,String phone){
+    public ApiResponse<Boolean> bindPhone(HttpServletRequest request, String phone) {
+
         return new ApiResponse<>(false);
     }
 }
