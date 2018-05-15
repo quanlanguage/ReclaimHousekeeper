@@ -6,6 +6,7 @@ import com.duyun.huihsou.housekepper.portal.service.user.UserService;
 import com.duyun.huihsou.housekepper.portal.vo.ResData;
 import com.duyun.huishou.housekeeper.po.user.User;
 import com.duyun.huishou.housekeeper.util.HttpTool;
+import com.duyun.huishou.housekeeper.util.RedisTool;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -32,6 +34,9 @@ public class AuthService {
 
     @Value("${wxAppSec}")
     private String wxAppSec;
+
+    @Autowired
+    private RedisTool redisTool;
 
     @Autowired
     private UserService userService;
@@ -55,16 +60,15 @@ public class AuthService {
                 json.put("openId", data.getOpenId());
                 json.put("userId", user.getId());
                 if (data.getTicket() != null){
-                    //由于每次key都不一样，查询缓存里已有该用户缓存删掉再更新
-                    //设置有效时间
-                    String cacheData  = redisTemplate.opsForValue().get(user.getOpenId());
-
-                    redisTemplate.opsForValue().set(data.getTicket(), json.toString(), 60 * 60 * 24 * 20, TimeUnit.SECONDS);
+                    List<String> keys = redisTool.like("*" + user.getOpenId());
+                    if (keys.size() != 0){
+                        redisTool.remove(keys);
+                    }
+                    redisTool.set(data.getTicket(), json.toString(),
+                            60 * 60 * 24 * 20, TimeUnit.SECONDS);
                 }
                 String ticket = data.getTicket();
                 return ticket;
-            }else {
-                return null;
             }
         }
         return null;

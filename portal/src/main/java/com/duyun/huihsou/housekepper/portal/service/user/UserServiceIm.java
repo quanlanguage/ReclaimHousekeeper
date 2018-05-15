@@ -23,8 +23,6 @@ public class UserServiceIm implements UserService {
     @Autowired
     private UserMapper userMapper;
 
-   ;
-
     @Override
     public int insertPo(User entity) {
         return userMapper.insertPo(entity);
