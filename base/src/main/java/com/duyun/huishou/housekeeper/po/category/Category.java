@@ -21,5 +21,12 @@ public class Category {
     /**
      * 创建时间
      */
-    private Long createTime;
+    private Long insertTime;
+
+    private Long lastUpdateTime;
+    /**
+     * 类目图标
+     */
+    private String icon;
+    private Integer status;
 }
