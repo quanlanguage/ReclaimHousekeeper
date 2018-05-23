@@ -12,6 +12,7 @@
         <module>admin</module>
         <module>portal</module>
         <module>job</module>
+        <module>pc</module>
     </modules>
     <packaging>pom</packaging>
 
