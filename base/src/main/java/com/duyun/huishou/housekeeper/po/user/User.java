@@ -24,6 +24,11 @@ public class User {
     private String openId;
 
     /**
+     * 电话号码
+     */
+    private String phone;
+
+    /**
      * 用户unionId
      */
     private String unionId;

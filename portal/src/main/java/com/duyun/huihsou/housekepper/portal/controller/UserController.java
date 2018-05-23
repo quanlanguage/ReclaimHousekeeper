@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/h5/api/user")
 public class UserController {
 
+
     @RequestMapping("/bindPhone")
     public ApiResponse<Boolean> bindPhone(HttpServletRequest request, String phone) {
 
