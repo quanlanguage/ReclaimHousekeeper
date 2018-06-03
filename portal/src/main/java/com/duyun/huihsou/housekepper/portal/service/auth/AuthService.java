@@ -4,7 +4,7 @@ package com.duyun.huihsou.housekepper.portal.service.auth;
 import com.alibaba.fastjson.JSONObject;
 import com.duyun.huihsou.housekepper.portal.service.user.UserService;
 import com.duyun.huihsou.housekepper.portal.vo.ResData;
-import com.duyun.huishou.housekeeper.po.user.User;
+import com.duyun.huishou.housekeeper.po.User;
 import com.duyun.huishou.housekeeper.util.HttpTool;
 import com.duyun.huishou.housekeeper.util.RedisTool;
 import lombok.extern.slf4j.Slf4j;

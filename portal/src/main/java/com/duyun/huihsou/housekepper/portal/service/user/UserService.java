@@ -3,7 +3,7 @@ package com.duyun.huihsou.housekepper.portal.service.user;
 
 import com.duyun.huihsou.housekepper.portal.service.IBaseService;
 import com.duyun.huihsou.housekepper.portal.vo.ResData;
-import com.duyun.huishou.housekeeper.po.user.User;
+import com.duyun.huishou.housekeeper.po.User;
 
 /**
  * @author albert

@@ -2,8 +2,8 @@ package com.duyun.huihsou.housekepper.portal.service.user;
 
 
 import com.duyun.huihsou.housekepper.portal.vo.ResData;
-import com.duyun.huishou.housekeeper.mapper.user.UserMapper;
-import com.duyun.huishou.housekeeper.po.user.User;
+import com.duyun.huishou.housekeeper.mapper.UserMapper;
+import com.duyun.huishou.housekeeper.po.User;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
