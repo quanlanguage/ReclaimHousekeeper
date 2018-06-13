@@ -12,22 +12,14 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface IBaseMapper<T>{
 
-    int insertPo(T entity);
+    int insert(T entity);
 
-    int updatePo(T entity);
+    int updateByPrimaryKeySelective(T entity);
 
-    int deletePo(T entity);
+    int deleteByPrimaryKey(Integer id);
 
-    T selectPo(T entity);
 
-    T selectById(Integer id);
+    T selectByPrimaryKey(Integer id);
 
-    /**
-     * 确认提交提现终态
-     * tans：status=2 -> status=3
-     * @param entity
-     * @return
-     */
-    int submit(T entity);
 
 }
