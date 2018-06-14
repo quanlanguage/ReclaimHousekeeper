@@ -1,25 +1,21 @@
 package com.duyun.huishou.housekeeper.mapper;
 
 
-
-import org.apache.ibatis.annotations.Mapper;
-
 /**
  * @author haoshijing
  * @version 2018年01月09日 17:33
  **/
 
-@Mapper
-public interface IBaseMapper<T>{
+public interface IBaseMapper<T> extends IBaseDao{
 
-    int insert(T entity);
+    int insert(String statement, T entity);
 
-    int updateByPrimaryKeySelective(T entity);
+    int updateByPrimaryKeySelective(String statement, T entity);
 
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(String statement, Integer id);
 
 
-    T selectByPrimaryKey(Integer id);
+    T selectByPrimaryKey(String statement, Integer id);
 
 
 }
