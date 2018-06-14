@@ -114,4 +114,12 @@
       last_update_time = #{lastUpdateTime,jdbcType=BIGINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <!--selectByParentId-->
+  <select id="selectByParentId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from t_category
+    where parent_id = #{parentId,jdbcType=INTEGER}
+  </select>
 </mapper>
