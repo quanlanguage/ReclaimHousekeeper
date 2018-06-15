@@ -107,7 +107,7 @@ public class HttpTool {
             }
             execCode = post.getResponseBodyAsString();
         } catch (Exception e) {
-            log.error("", e);
+            //log.error("", e);
             return null;
         } finally {
             closeClient(client, post);
@@ -148,7 +148,7 @@ public class HttpTool {
             }
             execCode = post.getResponseBodyAsString();
         } catch (Exception e) {
-            log.error("", e);
+            //log.error("", e);
             return null;
         } finally {
             closeClient(client, post);
@@ -181,7 +181,7 @@ public class HttpTool {
         try {
             post.releaseConnection();
         } catch (Exception varClose) {
-            log.error("", varClose);
+           // log.error("", varClose);
         }
     }
 
