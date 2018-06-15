@@ -1,4 +1,4 @@
-package com.duyun.huihsou.housekepper.pc.service;
+package com.duyun.huihsou.housekepper.pc.service.image;
 
 
 import org.springframework.stereotype.Service;
