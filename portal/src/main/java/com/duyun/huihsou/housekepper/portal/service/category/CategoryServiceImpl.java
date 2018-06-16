@@ -3,6 +3,7 @@ package com.duyun.huihsou.housekepper.portal.service.category;
 
 import com.duyun.huihsou.housekepper.portal.service.AbstractBaseService;
 import com.duyun.huishou.housekeeper.mapper.CategoryEntityMapper;
+import com.duyun.huishou.housekeeper.mapper.IBaseDao;
 import com.duyun.huishou.housekeeper.po.CategoryEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +29,10 @@ public class CategoryServiceImpl extends AbstractBaseService<CategoryEntity> imp
     @Override
     public List<CategoryEntity> getCategoryByParentId(Integer parentId) {
         return categoryEntityMapper.selectByParentId(parentId);
+    }
+
+    @Override
+    public IBaseDao getMapper() {
+        return categoryEntityMapper;
     }
 }

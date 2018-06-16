@@ -1,13 +1,15 @@
-package com.duyun.huihsou.housekepper.portal.service.user;
+package com.duyun.huihsou.housekepper.portal.service.news;
 
 
 import com.duyun.huihsou.housekepper.portal.service.AbstractBaseService;
 import com.duyun.huishou.housekeeper.mapper.IBaseDao;
-import com.duyun.huishou.housekeeper.mapper.UserEntityMapper;
-import com.duyun.huishou.housekeeper.po.UserEntity;
+import com.duyun.huishou.housekeeper.mapper.NewsEntityMapper;
+import com.duyun.huishou.housekeeper.po.NewsEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author albert
@@ -18,13 +20,19 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
-public class UserServiceImpl extends AbstractBaseService<UserEntity> implements UserService {
+public class NewsServiceImpl extends AbstractBaseService<NewsEntity> implements NewsService {
 
     @Autowired
-    private UserEntityMapper userMapper;
+    private NewsEntityMapper newsEntityMapper;
+
 
     @Override
     public IBaseDao getMapper() {
-        return (IBaseDao)userMapper;
+        return newsEntityMapper;
+    }
+
+    @Override
+    public List<NewsEntity> getAll() {
+        return newsEntityMapper.selectAll();
     }
 }

@@ -17,6 +17,16 @@ public class AttributeDetailEntity {
 
     private BigDecimal price;
 
+    private String assessment;
+
+    public String getAssessment() {
+        return assessment;
+    }
+
+    public void setAssessment(String assessment) {
+        this.assessment = assessment;
+    }
+
     public Integer getId() {
         return id;
     }

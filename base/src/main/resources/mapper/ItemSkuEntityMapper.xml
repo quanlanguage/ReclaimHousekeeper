@@ -3,6 +3,8 @@
 <mapper namespace="com.duyun.huishou.housekeeper.mapper.ItemSkuEntityMapper" >
   <resultMap id="BaseResultMap" type="com.duyun.huishou.housekeeper.po.ItemSkuEntity" >
     <id column="id" property="id" jdbcType="INTEGER" />
+    <id column="user_id" property="UserId" jdbcType="INTEGER" />
+
     <result column="category_id" property="categoryId" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="attribute_detailIds" property="attributeDetailids" jdbcType="VARCHAR" />
@@ -11,7 +13,7 @@
     <result column="last_update_time" property="lastUpdateTime" jdbcType="BIGINT" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, category_id, name, attribute_detailIds, price, insert_time, last_update_time
+    id,user_id, category_id, `name`, attribute_detailIds, price, insert_time, last_update_time
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -23,13 +25,17 @@
     delete from t_item_sku
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.duyun.huishou.housekeeper.po.ItemSkuEntity" >
-    insert into t_item_sku (id, category_id, name, 
+  <insert id="insert" parameterType="com.duyun.huishou.housekeeper.po.ItemSkuEntity">
+    insert into t_item_sku (id, user_id, category_id, `name`,
       attribute_detailIds, price, insert_time, 
       last_update_time)
-    values (#{id,jdbcType=INTEGER}, #{categoryId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{categoryId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
       #{attributeDetailids,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{insertTime,jdbcType=BIGINT}, 
       #{lastUpdateTime,jdbcType=BIGINT})
+    <selectKey resultType="java.lang.Integer" order="AFTER"
+               keyProperty="id">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
   </insert>
   <insert id="insertSelective" parameterType="com.duyun.huishou.housekeeper.po.ItemSkuEntity" >
     insert into t_item_sku
@@ -37,11 +43,14 @@
       <if test="id != null" >
         id,
       </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
       <if test="categoryId != null" >
         category_id,
       </if>
       <if test="name != null" >
-        name,
+        `name`,
       </if>
       <if test="attributeDetailids != null" >
         attribute_detailIds,
@@ -60,6 +69,10 @@
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+
       <if test="categoryId != null" >
         #{categoryId,jdbcType=INTEGER},
       </if>
@@ -83,11 +96,14 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.duyun.huishou.housekeeper.po.ItemSkuEntity" >
     update t_item_sku
     <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
       <if test="categoryId != null" >
         category_id = #{categoryId,jdbcType=INTEGER},
       </if>
       <if test="name != null" >
-        name = #{name,jdbcType=VARCHAR},
+        `name` = #{name,jdbcType=VARCHAR},
       </if>
       <if test="attributeDetailids != null" >
         attribute_detailIds = #{attributeDetailids,jdbcType=VARCHAR},
@@ -106,8 +122,9 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.duyun.huishou.housekeeper.po.ItemSkuEntity" >
     update t_item_sku
-    set category_id = #{categoryId,jdbcType=INTEGER},
-      name = #{name,jdbcType=VARCHAR},
+    set user_id = #{userId,jdbcType=INTEGER},
+      category_id = #{categoryId,jdbcType=INTEGER},
+      `name` = #{name,jdbcType=VARCHAR},
       attribute_detailIds = #{attributeDetailids,jdbcType=VARCHAR},
       price = #{price,jdbcType=DECIMAL},
       insert_time = #{insertTime,jdbcType=BIGINT},

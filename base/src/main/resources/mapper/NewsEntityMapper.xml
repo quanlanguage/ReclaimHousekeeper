@@ -103,4 +103,11 @@
       last_update_time = #{lastUpdateTime,jdbcType=BIGINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <!-- selectAll -->
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_news
+  </select>
 </mapper>

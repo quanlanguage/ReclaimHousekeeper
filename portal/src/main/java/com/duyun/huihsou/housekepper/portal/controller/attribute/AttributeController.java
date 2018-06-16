@@ -27,14 +27,14 @@ public class AttributeController {
 
     @VisitorAccessible
     @RequestMapping(value = "/list", method = RequestMethod.POST, produces="application/json")
-    public ApiResponse<Boolean> getList(@RequestBody Map<String, Object> map) {
+    public ApiResponse<List<AttributeEntity>> getList(@RequestBody Map<String, Object> map) {
         List<AttributeEntity> list = attributeService.getAttributeByCategoryId((Integer) map.get("categoryId"));
         return new ApiResponse(list);
     }
 
     @VisitorAccessible
     @RequestMapping(value = "/detail/list", method = RequestMethod.POST, produces="application/json")
-    public ApiResponse<Boolean> getDetailList(@RequestBody Map<String, Object> map) {
+    public ApiResponse<List<AttributeDetailEntity>> getDetailList(@RequestBody Map<String, Object> map) {
         List<AttributeDetailEntity> list = attributeService.getAttributeDetailByCondetion(map);
         return new ApiResponse(list);
     }
