@@ -2,10 +2,17 @@ package com.duyun.huihsou.housekepper.pc.service.news;
 
 
 import com.duyun.huihsou.housekepper.pc.service.IBaseService;
-import com.duyun.huishou.housekeeper.po.News;
+import com.duyun.huishou.housekeeper.po.NewsEntity;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Select;
 
-public interface NewsService extends IBaseService<News> {
+import java.util.List;
+import java.util.Map;
 
-    News queryById(News newsId);
+public interface NewsService extends IBaseService<NewsEntity> {
+
+
+   List<NewsEntity> getNewsprofile(Map map);
+
 
 }

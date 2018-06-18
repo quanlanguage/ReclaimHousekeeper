@@ -1,7 +1,7 @@
 package com.duyun.huihsou.housekepper.pc.controller;
 
-import com.duyun.huihsou.housekepper.pc.service.Thumbnail;
-import com.duyun.huihsou.housekepper.pc.service.Upload;
+import com.duyun.huihsou.housekepper.pc.service.image.Thumbnail;
+import com.duyun.huihsou.housekepper.pc.service.image.Upload;
 import com.duyun.huihsou.housekepper.pc.tool.ImageList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
