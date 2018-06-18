@@ -47,7 +47,6 @@ public class ImageController {
         return "redirect:/images";
     }
 
-
     //显示所有图片
     @RequestMapping(value="/images",method=RequestMethod.GET)
     public ModelAndView showImages(HttpServletRequest request, HttpServletResponse response)
@@ -74,10 +73,8 @@ public class ImageController {
             //设置MIME类型
             response.setContentType("application/octet-stream");
             //或者为response.setContentType("application/x-msdownload");
-
             //设置头信息,设置文件下载时的默认文件名，同时解决中文名乱码问题
             response.addHeader("Content-disposition", "attachment;filename="+new String(fileName.getBytes(), "ISO-8859-1"));
-
             InputStream inputStream=new FileInputStream(file);
             ServletOutputStream outputStream=response.getOutputStream();
             byte[] bs=new byte[1024];

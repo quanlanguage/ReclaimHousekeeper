@@ -9,7 +9,6 @@ public class ImageList {
     public static List<String> printFile(String path) {
         File file = new File(path);
         List<String> images = new ArrayList<String>();
-
         // 是文件夹的话
         if (file.isDirectory()) {
             String[] filelist = file.list();
@@ -19,7 +18,6 @@ public class ImageList {
                     images.add(readfile.getName());
                 }
             }
-
         }
         return images;
     }
