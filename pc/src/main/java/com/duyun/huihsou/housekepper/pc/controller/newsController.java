@@ -59,7 +59,7 @@ public class newsController {
     public Object getNewShowlist(Integer pageid) {
         try {
 
-           return JSON.toJSON(newsService.selectByPrimaryKey(pageid));
+           return JSON.toJSON(new ApiResponse(RetCode.OK,"请求数据成功",newsService.selectByPrimaryKey(pageid)));
         }catch (Exception e){
             System.out.println("异常");
             return JSON.toJSON(new ApiResponse(RetCode.NOT_FOUND,"请求失败或没有数据"));
