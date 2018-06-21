@@ -1,11 +1,10 @@
-/*
 package com.duyun.huihsou.housekepper.portal.service.auth;
 
 
 import com.alibaba.fastjson.JSONObject;
 import com.duyun.huihsou.housekepper.portal.service.user.UserService;
 import com.duyun.huihsou.housekepper.portal.vo.ResData;
-import com.duyun.huishou.housekeeper.po.User;
+import com.duyun.huishou.housekeeper.po.UserEntity;
 import com.duyun.huishou.housekeeper.util.HttpTool;
 import com.duyun.huishou.housekeeper.util.RedisTool;
 import lombok.extern.slf4j.Slf4j;
@@ -19,13 +18,12 @@ import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-*/
 /**
  * @author albert
  * @package com.xianduankeji.ktv.portal.service
  * @email cn.lu.duke@gmail.com
  * @date January 10, 2018
- *//*
+ */
 
 
 @Service
@@ -48,24 +46,23 @@ public class AuthService {
     RedisTemplate<String, String> redisTemplate;
 
 
-    */
-/**
+    /**
      * 返回客户端凭证
      * @param code
      * @return
-     *//*
+     */
 
     public String getTicket(String code){
         ResData data = getSessionKey(code);
         if(data != null){
             userService.processSessionData(data);
-            User user = userService.queryByOpenId(data.getOpenId());
-            if (user != null){
+            UserEntity userEntity = userService.queryByOpenId(data.getOpenId());
+            if (userEntity != null){
                 net.sf.json.JSONObject json = new net.sf.json.JSONObject();
                 json.put("openId", data.getOpenId());
-                json.put("userId", user.getId());
+                json.put("userId", userEntity.getId());
                 if (data.getTicket() != null){
-                    List<String> keys = redisTool.like("*" + user.getOpenId());
+                    List<String> keys = redisTool.like("*" + userEntity.getOpenId());
                     if (keys.size() != 0){
                         redisTool.remove(keys);
                     }
@@ -80,12 +77,11 @@ public class AuthService {
 
     }
 
-    */
-/**
+    /**
      * 设置session_key 到redis 并返回修改后的session给客户端
      * @param code
      * @return
-     *//*
+     */
 
     public ResData getSessionKey(String code){
         //构建session url
@@ -111,13 +107,13 @@ public class AuthService {
         return new ResData(openId, unionId, sessionKey, ticket.toString(), "getSessionKey成功");
     }
 
-    */
-/**
+
+    /**
      * 获取一个随机加密值
      * @param codeType
      * @param content
      * @return
-     *//*
+     */
 
     private String getEncode(String codeType, String content) {
         try {
@@ -139,4 +135,3 @@ public class AuthService {
     }
 
 }
-*/

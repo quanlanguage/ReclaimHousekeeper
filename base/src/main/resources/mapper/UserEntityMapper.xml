@@ -138,4 +138,11 @@
       last_update_time = #{lastUpdateTime,jdbcType=BIGINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <!-- selectByOpenId -->
+  <select id="selectByOpenId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from t_user
+    where open_id = #{openId,jdbcType=VARCHAR}
+  </select>
 </mapper>

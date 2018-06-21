@@ -2,6 +2,7 @@ package com.duyun.huihsou.housekepper.portal.service.user;
 
 
 import com.duyun.huihsou.housekepper.portal.service.IBaseService;
+import com.duyun.huihsou.housekepper.portal.vo.ResData;
 import com.duyun.huishou.housekeeper.po.UserEntity;
 
 /**
@@ -12,4 +13,7 @@ import com.duyun.huishou.housekeeper.po.UserEntity;
  */
 public interface UserService extends IBaseService<UserEntity> {
 
+    void processSessionData(ResData data);
+
+    UserEntity queryByOpenId(String openId);
 }
