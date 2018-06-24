@@ -57,9 +57,9 @@ public class UserServiceImpl extends AbstractBaseService<UserEntity> implements 
 
     @Override
     public String login(UserParams params) {
-        UserEntity entity = userMapper.selectByMobile(params.getMobile());
-        if (entity == null) {
-            throw new RuntimeException("用户不存在！");
+        UserEntity entity = userMapper.selectByOpenId(params.getOpenId());
+        if (!entity.getMobile().equals(params.getMobile())) {
+            throw new RuntimeException("请使用本微信绑定账号登录！");
         }
         String salt = entity.getSalt();
         String pwd = EncryptionUtils.encryptPasswordBySalt(params.getPassword(), salt);
