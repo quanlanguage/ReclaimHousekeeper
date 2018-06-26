@@ -30,7 +30,6 @@
       #{isTop,jdbcType=TINYINT}, #{insertTime,jdbcType=BIGINT}, #{lastUpdateTime,jdbcType=BIGINT}
       )
   </insert>
-
   <insert id="insertSelective" parameterType="com.duyun.huishou.housekeeper.po.NewsEntity" >
     insert into t_news
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -110,5 +109,9 @@
     select
     <include refid="Base_Column_List" />
     from t_news
+    order by insert_time desc
+    <if test="pageNo != null and pageSize != null">
+      limit #{pageNo},#{pageSize}
+    </if>
   </select>
 </mapper>

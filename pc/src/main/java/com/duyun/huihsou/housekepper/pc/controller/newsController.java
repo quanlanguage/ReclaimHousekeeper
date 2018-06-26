@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/news")
+@RequestMapping("/pc/portal/news")
 public class newsController {
 
 
@@ -43,8 +43,10 @@ public class newsController {
                 //截取字符串
                 newLitem.get(i).setContent(HTMLSpirit.delHTMLTag(newLitem.get(i).getContent(),cutoutLength));
             }
+            //获取所有的页面
             Integer pageNumber= newsService.getCountNews();
             HashMap reMap=new HashMap();
+            // 页数
             reMap.put("PageNumber",pageNumber%newsPageSize>0?pageNumber/newsPageSize +1 :pageNumber/newsPageSize);
             reMap.put("list",newLitem);
             return JSON.toJSON(new  ApiResponse(reMap));
