@@ -1,5 +1,9 @@
-package org.zerhusen.config;
+package com.duyun.huihsou.housekepper.pc.config;
 
+import com.duyun.huihsou.housekepper.pc.security.JwtAuthenticationEntryPoint;
+import com.duyun.huihsou.housekepper.pc.security.JwtAuthorizationTokenFilter;
+import com.duyun.huihsou.housekepper.pc.security.JwtTokenUtil;
+import com.duyun.huihsou.housekepper.pc.security.service.JwtUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -16,10 +20,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.zerhusen.security.JwtAuthenticationEntryPoint;
-import org.zerhusen.security.JwtAuthorizationTokenFilter;
-import org.zerhusen.security.JwtTokenUtil;
-import org.zerhusen.security.service.JwtUserDetailsService;
 
 @Configuration
 @EnableWebSecurity
@@ -45,13 +45,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
             .userDetailsService(jwtUserDetailsService)
-            .passwordEncoder(passwordEncoderBean());
+            /*.passwordEncoder(passwordEncoderBean())*/;
     }
 
-    @Bean
+    /*@Bean
     public PasswordEncoder passwordEncoderBean() {
         return new BCryptPasswordEncoder();
-    }
+    }*/
 
     @Bean
     @Override
@@ -62,20 +62,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
-            // we don't need CSRF because our token is invulnerable
             .csrf().disable()
-
             .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
-
-            // don't create session
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-
             .authorizeRequests()
-
-            // Un-secure H2 Database
-            .antMatchers("/h2-console/**/**").permitAll()
-
             .antMatchers("/auth/**").permitAll()
+                .antMatchers("/user/**").permitAll()
             .anyRequest().authenticated();
 
         // Custom JWT based security filter

@@ -1,8 +1,9 @@
-package org.zerhusen.security.controller;
+package com.duyun.huihsou.housekepper.pc.security.controller;
 
-import java.util.Objects;
-import javax.servlet.http.HttpServletRequest;
-
+import com.duyun.huihsou.housekepper.pc.security.JwtAuthenticationRequest;
+import com.duyun.huihsou.housekepper.pc.security.JwtTokenUtil;
+import com.duyun.huihsou.housekepper.pc.security.JwtUser;
+import com.duyun.huihsou.housekepper.pc.security.service.JwtAuthenticationResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,15 +15,10 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-import org.zerhusen.security.JwtAuthenticationRequest;
-import org.zerhusen.security.JwtTokenUtil;
-import org.zerhusen.security.JwtUser;
-import org.zerhusen.security.service.JwtAuthenticationResponse;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Objects;
 
 @RestController
 public class AuthenticationRestController {
@@ -45,11 +41,9 @@ public class AuthenticationRestController {
 
         authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 
-        // Reload password post-security so we can generate the token
         final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
         final String token = jwtTokenUtil.generateToken(userDetails);
 
-        // Return the token
         return ResponseEntity.ok(new JwtAuthenticationResponse(token));
     }
 
@@ -73,9 +67,6 @@ public class AuthenticationRestController {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
     }
 
-    /**
-     * Authenticates the user. If something is wrong, an {@link AuthenticationException} will be thrown
-     */
     private void authenticate(String username, String password) {
         Objects.requireNonNull(username);
         Objects.requireNonNull(password);

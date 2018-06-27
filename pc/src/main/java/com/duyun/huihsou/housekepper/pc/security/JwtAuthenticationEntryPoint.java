@@ -1,4 +1,4 @@
-package org.zerhusen.security;
+package com.duyun.huihsou.housekepper.pc.security;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;

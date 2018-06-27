@@ -1,16 +1,13 @@
-package org.zerhusen.security;
+package com.duyun.huihsou.housekepper.pc.security;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.Date;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-/**
- * Created by stephan on 20.03.16.
- */
 public class JwtUser implements UserDetails {
 
     private final Long id;

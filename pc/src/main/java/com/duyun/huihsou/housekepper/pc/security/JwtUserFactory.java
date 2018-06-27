@@ -1,12 +1,12 @@
-package org.zerhusen.security;
+package com.duyun.huihsou.housekepper.pc.security;
+
+import com.duyun.huihsou.housekepper.pc.security.model.Authority;
+import com.duyun.huihsou.housekepper.pc.security.model.User;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.zerhusen.model.security.Authority;
-import org.zerhusen.model.security.User;
 
 public final class JwtUserFactory {
 
