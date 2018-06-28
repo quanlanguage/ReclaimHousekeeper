@@ -1,9 +1,6 @@
 package com.duyun.huishou.housekeeper.po.news;
 
-
-
 public class newSummary {
-
     private Integer id;
 
     private String title;
@@ -13,6 +10,16 @@ public class newSummary {
     private String content;
 
     private Long lastUpdateTime;
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    private String img;
 
 
     public String getContent() {
@@ -56,4 +63,5 @@ public class newSummary {
     public void setLastUpdateTime(Long lastUpdateTime) {
         this.lastUpdateTime = lastUpdateTime;
     }
+
 }

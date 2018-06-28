@@ -67,7 +67,7 @@ public class newsController {
             return JSON.toJSON(new ApiResponse(RetCode.NOT_FOUND,"请求失败或没有数据"));
         }
     }
-
+    // 没有img
     @RequestMapping(value = "/insertOneNewPage", method = RequestMethod.POST)
     public Object insertOneNewPage(
             Integer id,

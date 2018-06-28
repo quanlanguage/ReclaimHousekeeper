@@ -1,24 +1,11 @@
 package com.duyun.huishou.housekeeper.po;
 
+import lombok.Data;
+
+@Data
 public class NewsEntity {
 
-    private Integer id;
-
-    private String title;
-
-    private String content;
-
-    private Byte isTop;
-
-    private Long insertTime;
-
-
-    private Long lastUpdateTime;
-
-    public  NewsEntity(){
-
-    }
-
+    //没有重新构造img 函数
     // 重写构造方法
     public NewsEntity(Integer id,String title,String content,Byte isTop,Long insertTime,Long lastUpdateTime){
         setId(id);
@@ -27,9 +14,9 @@ public class NewsEntity {
         setIsTop(isTop);
         setLastUpdateTime(lastUpdateTime);
         setInsertTime(insertTime);
-
     }
 
+    //没有重新构造img 函数
     public NewsEntity(Integer id,String title,String content,Byte isTop,Long lastUpdateTime){
         setId(id);
         setContent(content);
@@ -37,6 +24,20 @@ public class NewsEntity {
         setIsTop(isTop);
         setLastUpdateTime(lastUpdateTime);
     }
+
+
+    private Integer id;
+
+    private String title;
+
+    private String content;
+    private String img;
+
+    private Byte isTop;
+
+    private Long insertTime;
+
+    private Long lastUpdateTime;
 
     public Integer getId() {
         return id;
@@ -85,5 +86,4 @@ public class NewsEntity {
     public void setLastUpdateTime(Long lastUpdateTime) {
         this.lastUpdateTime = lastUpdateTime;
     }
-
 }
