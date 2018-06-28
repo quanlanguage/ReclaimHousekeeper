@@ -9,7 +9,7 @@ import java.util.Map;
 
 public interface NewsEntityMapper extends IBaseDao<NewsEntity>{
 
-    List<NewsEntity> selectAll();
+    List<NewsEntity> selectAll(Map map);
 
     // 显示文章概括
     @Select("SELECT * FROM ( \n"+
