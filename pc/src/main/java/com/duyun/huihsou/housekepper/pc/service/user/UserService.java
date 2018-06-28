@@ -1,9 +1,10 @@
-package com.duyun.huihsou.housekepper.portal.service.user;
+package com.duyun.huihsou.housekepper.pc.service.user;
 
 
-import com.duyun.huihsou.housekepper.portal.request.UserParams;
-import com.duyun.huihsou.housekepper.portal.service.IBaseService;
-import com.duyun.huihsou.housekepper.portal.vo.ResData;
+
+import com.duyun.huihsou.housekepper.pc.request.UserParams;
+import com.duyun.huihsou.housekepper.pc.service.IBaseService;
+import com.duyun.huihsou.housekepper.pc.vo.ResData;
 import com.duyun.huishou.housekeeper.po.UserEntity;
 
 /**
@@ -15,11 +16,14 @@ import com.duyun.huishou.housekeeper.po.UserEntity;
 public interface UserService extends IBaseService<UserEntity> {
 
     void processSessionData(ResData data);
+
     UserEntity queryByOpenId(String openId);
 
     String login(UserParams params);
 
-    void register(UserParams params);
+    String register(UserParams params);
 
     Boolean repwd(UserParams params, UserEntity userEntity);
+
+    UserEntity selectByOpenId(String openId);
 }
