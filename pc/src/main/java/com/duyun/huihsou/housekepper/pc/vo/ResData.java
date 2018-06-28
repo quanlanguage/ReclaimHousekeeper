@@ -1,4 +1,4 @@
-package com.duyun.huihsou.housekepper.portal.vo;
+package com.duyun.huihsou.housekepper.pc.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -6,19 +6,6 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class ResData {
-    private String openId;
-    private String unionId;
-    private String sessionKey;
-    /**
-     * 客户端校验key
-     */
-    private String ticket;
-    /**
-     * 附加消息
-     */
-    private String message;
-
-
     public String getOpenId() {
         return openId;
     }
@@ -58,4 +45,16 @@ public class ResData {
     public void setMessage(String message) {
         this.message = message;
     }
+
+    private String openId;
+    private String unionId;
+    private String sessionKey;
+    /**
+     * 客户端校验key
+     */
+    private String ticket;
+    /**
+     * 附加消息
+     */
+    private String message;
 }
