@@ -1,11 +1,15 @@
 package com.duyun.huishou.housekeeper.po;
 
+import lombok.Data;
+
+@Data
 public class NewsEntity {
     private Integer id;
 
     private String title;
 
     private String content;
+    private String img;
 
     private Byte isTop;
 
