@@ -22,7 +22,7 @@ public class GoodsController {
 
     @Autowired
     private GoodsService goodsService;
-
+    //保存商品
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces="application/json")
     public Object save(@RequestBody ItemSkuEntity itemSkuEntity) {
         try {
@@ -32,4 +32,9 @@ public class GoodsController {
             return JSON.toJSON(new ApiResponse(RetCode.NOT_FOUND,"未知错误"));
         }
     }
+
+
+
+
+
 }
