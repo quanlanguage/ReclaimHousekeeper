@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface NewsEntityMapper extends IBaseDao<NewsEntity>{
-    List<NewsEntity> selectAll();
+    List<NewsEntity> selectAll(Map<String, Object> map);
 
     // 显示文章概括
     @Select("SELECT * FROM ( \n"+
@@ -18,7 +18,8 @@ public interface NewsEntityMapper extends IBaseDao<NewsEntity>{
             "t_news.content, \n"+
             "t_news.title, \n"+
             "t_news.is_top  isTop, \n"+
-            "t_news.last_update_time  lastUpdateTime \n"+
+            "t_news.last_update_time  lastUpdateTime, \n"+
+            "t_news.img  img \n"+
             "FROM \n"+
             "t_news \n"+
             "GROUP BY t_news.id \n"+

@@ -15,6 +15,17 @@ public class newSummary {
     private Long lastUpdateTime;
 
 
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    private String img;
+
+
     public String getContent() {
         return content;
     }

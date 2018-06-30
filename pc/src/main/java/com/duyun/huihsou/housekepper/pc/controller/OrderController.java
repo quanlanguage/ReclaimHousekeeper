@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/pc/portal/order")
 public class OrderController {
 
+
     @Autowired
     private OrderService orderService;
 
@@ -37,9 +38,8 @@ public class OrderController {
             return JSON.toJSON(new ApiResponse());
 
         }catch(Exception e) {
-            System.out.println("异常信息为："+e.getMessage());
+            // System.out.println("异常信息为："+e.getMessage());
             return JSON.toJSON(new ApiResponse(RetCode.NOT_FOUND,"请求失败或没有数据"));
         }
-
     }
 }

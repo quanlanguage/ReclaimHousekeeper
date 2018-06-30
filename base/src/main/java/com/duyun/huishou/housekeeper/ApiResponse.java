@@ -14,8 +14,6 @@ public class ApiResponse<T> {
     private String msg;
     private T data;
 
-
-
     public ApiResponse(){
         this.code = RetCode.OK;
         this.msg = "";

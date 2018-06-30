@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/pc/portal/goods")
 public class GoodsController {
 
+
     @Autowired
     private GoodsService goodsService;
 
