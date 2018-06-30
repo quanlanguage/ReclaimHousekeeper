@@ -33,7 +33,7 @@ public interface ProblemEntityMapper extends IBaseDao<ProblemEntity>{
             "t_problem\n" +
             "ORDER BY\n" +
             "t_problem.last_update_time DESC \n" +
-            "LIMIT  #{start,jdbcType=INTEGER}, #{size,jdbcType=INTEGER}\"")
+            "LIMIT  #{start,jdbcType=INTEGER}, #{size,jdbcType=INTEGER}")
     List<problemItem> getAllProblem(Map map);
 
     //通过主键删除 问题

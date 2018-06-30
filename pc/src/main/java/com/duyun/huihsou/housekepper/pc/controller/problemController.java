@@ -80,10 +80,10 @@ public class problemController {
     }
 
     @RequestMapping(value = "/updateProblem", method = RequestMethod.POST)
-    public Object updateProblem(            Integer id,
-                                            String name,
+    public Object updateProblem(             Integer id,
+                                             String name,
                                              String answer,
-                                            Long lastUpdateTime){
+                                             Long lastUpdateTime){
         try{
             Map map= new HashMap();
             map.put("id",id);
