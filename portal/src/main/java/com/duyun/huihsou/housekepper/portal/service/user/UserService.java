@@ -15,6 +15,7 @@ import com.duyun.huishou.housekeeper.po.UserEntity;
 public interface UserService extends IBaseService<UserEntity> {
 
     void processSessionData(ResData data);
+
     UserEntity queryByOpenId(String openId);
 
     String login(UserParams params);

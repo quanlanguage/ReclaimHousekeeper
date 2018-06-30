@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class NewsEntity {
 
+
     //没有重新构造img 函数
     // 重写构造方法
     public NewsEntity(Integer id,String title,String content,Byte isTop,Long insertTime,Long lastUpdateTime){
@@ -24,6 +25,7 @@ public class NewsEntity {
         setIsTop(isTop);
         setLastUpdateTime(lastUpdateTime);
     }
+
 
     private Integer id;
 

@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface AttributeEntityMapper extends IBaseDao<AttributeEntity>{
 
+
     List<AttributeEntity> selectByCategoryId(Integer categoryId);
 
 }

@@ -1,15 +1,18 @@
 package com.duyun.huishou.housekeeper.mapper;
 
 import com.duyun.huishou.housekeeper.po.NewsEntity;
+
 import com.duyun.huishou.housekeeper.po.news.newSummary;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+
 
 import java.util.List;
 import java.util.Map;
 
 public interface NewsEntityMapper extends IBaseDao<NewsEntity>{
     List<NewsEntity> selectAll(Map<String, Object> map);
+
 
     // 显示文章概括
     @Select("SELECT * FROM ( \n"+
@@ -49,4 +52,5 @@ public interface NewsEntityMapper extends IBaseDao<NewsEntity>{
 
     @Override
     int deleteByPrimaryKey(Integer id);
+
 }
