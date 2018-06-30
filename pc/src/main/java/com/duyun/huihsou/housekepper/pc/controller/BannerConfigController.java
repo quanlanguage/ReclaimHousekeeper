@@ -6,8 +6,6 @@ import com.duyun.huishou.housekeeper.ApiResponse;
 import com.duyun.huishou.housekeeper.constants.RetCode;
 import com.duyun.huishou.housekeeper.po.BannerConfigEntity;
 import com.duyun.huishou.housekeeper.po.CategoryEntity;
-import com.duyun.huishou.housekeeper.po.OrderEntity;
-import com.duyun.huishou.housekeeper.po.ProblemEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,10 +37,10 @@ public class BannerConfigController {
 
     @RequestMapping(value = "/getlist", method = RequestMethod.GET, produces="application/json")
     public Object getlist(
-           Integer status,
-           Integer channel,
-           Integer start ,
-           Integer size
+            Integer status,
+            Integer channel,
+            Integer start ,
+            Integer size
     ) {
         try {
             Map map= new HashMap();
