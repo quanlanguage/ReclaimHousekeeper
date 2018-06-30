@@ -67,7 +67,7 @@ public class LoginFilter extends HandlerInterceptorAdapter {
             }
             return true;
         }catch (Exception e){
-            log.error("获取凭证失败", e.getMessage());
+            //log.error("获取凭证失败", e.getMessage());
             return false;
         }
     }
