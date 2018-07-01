@@ -185,6 +185,8 @@
     on i.category_id = ca.id
     where
     o.user_id = #{userId}
-    and o.order_status = #{orderStatus}
+    <if test="orderStatus!=null">
+      and o.order_status = #{orderStatus}
+    </if>
   </select>
 </mapper>
