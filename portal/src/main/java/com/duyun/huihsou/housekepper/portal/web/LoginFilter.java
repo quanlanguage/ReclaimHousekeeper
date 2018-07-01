@@ -67,7 +67,6 @@ public class LoginFilter extends HandlerInterceptorAdapter {
             }
             return true;
         }catch (Exception e){
-            //log.error("获取凭证失败", e.getMessage());
             return false;
         }
     }
@@ -77,5 +76,10 @@ public class LoginFilter extends HandlerInterceptorAdapter {
         return userId;
     }
 
-
+    @Override
+    public void afterCompletion(
+            HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
+            throws Exception {
+        GlobalHolder.removeCurrentLoginUser();
+    }
 }
