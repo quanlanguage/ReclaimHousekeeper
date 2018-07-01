@@ -5,11 +5,13 @@ import com.duyun.huihsou.housekepper.pc.service.AbstractBaseService;
 import com.duyun.huishou.housekeeper.mapper.BannerConfigEntityMapper;
 import com.duyun.huishou.housekeeper.mapper.IBaseDao;
 import com.duyun.huishou.housekeeper.po.BannerConfigEntity;
+import com.duyun.huishou.housekeeper.po.banner.bannerR;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author albert
@@ -34,5 +36,20 @@ public class BannerConfigServiceImpl extends AbstractBaseService<BannerConfigEnt
     @Override
     public List<BannerConfigEntity> getBannerConfigByConfition(BannerConfigEntity entity) {
         return bannerConfigEntityMapper.selectByCondition(entity);
+    }
+
+    @Override
+    public List<bannerR> selectItem(Map map) {
+        return bannerConfigEntityMapper.selectItem(map);
+    }
+
+    @Override
+    public int getCountbanner() {
+        return bannerConfigEntityMapper.getCountbanner();
+    }
+
+    @Override
+    public int delectOneBanprom(Integer id) {
+        return bannerConfigEntityMapper.delectOneBanprom(id);
     }
 }

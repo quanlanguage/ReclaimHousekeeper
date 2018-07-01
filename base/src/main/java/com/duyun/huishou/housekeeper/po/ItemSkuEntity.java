@@ -3,6 +3,7 @@ package com.duyun.huishou.housekeeper.po;
 import java.math.BigDecimal;
 
 public class ItemSkuEntity {
+
     private Integer id;
 
     private Integer categoryId;

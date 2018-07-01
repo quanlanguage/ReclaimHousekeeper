@@ -11,6 +11,19 @@ public class ProblemEntity {
 
     private Long lastUpdateTime;
 
+    public ProblemEntity(){}
+    public ProblemEntity(
+             String name,
+             String answer,
+             Long insertTime,
+             Long lastUpdateTime){
+        this.setName(name);
+        this.setAnswer(answer);
+        this.setInsertTime(insertTime);
+        this.setLastUpdateTime(lastUpdateTime);
+
+    }
+
     public Integer getId() {
         return id;
     }

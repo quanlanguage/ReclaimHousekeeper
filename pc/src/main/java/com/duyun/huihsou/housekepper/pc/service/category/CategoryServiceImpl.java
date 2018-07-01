@@ -5,11 +5,13 @@ import com.duyun.huihsou.housekepper.pc.service.AbstractBaseService;
 import com.duyun.huishou.housekeeper.mapper.CategoryEntityMapper;
 import com.duyun.huishou.housekeeper.mapper.IBaseDao;
 import com.duyun.huishou.housekeeper.po.CategoryEntity;
+import com.duyun.huishou.housekeeper.po.category.category;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author albert
@@ -29,6 +31,16 @@ public class CategoryServiceImpl extends AbstractBaseService<CategoryEntity> imp
     @Override
     public List<CategoryEntity> getCategoryByParentId(Integer parentId) {
         return categoryEntityMapper.selectByParentId(parentId);
+    }
+
+    @Override
+    public List<category> getCategoryList(Map map) {
+        return categoryEntityMapper.getCategoryList(map);
+    }
+
+    @Override
+    public Integer getCountFromParent(Integer id) {
+        return categoryEntityMapper.getCountFromParent(id);
     }
 
     @Override
