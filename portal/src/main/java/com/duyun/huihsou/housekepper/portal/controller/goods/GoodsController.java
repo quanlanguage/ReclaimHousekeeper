@@ -3,6 +3,7 @@ package com.duyun.huihsou.housekepper.portal.controller.goods;
 import com.duyun.huihsou.housekepper.portal.gloabal.GlobalHolder;
 import com.duyun.huihsou.housekepper.portal.service.goods.GoodsService;
 import com.duyun.huishou.housekeeper.ApiResponse;
+import com.duyun.huishou.housekeeper.constants.RetCode;
 import com.duyun.huishou.housekeeper.po.ItemSkuEntity;
 import com.duyun.huishou.housekeeper.po.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,9 @@ public class GoodsController {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces="application/json")
     public ApiResponse<Boolean> save(@RequestBody ItemSkuEntity itemSkuEntity) {
+        if (itemSkuEntity.getAttributeDetailids()==null||itemSkuEntity.getCategoryId()==null) {
+            return  new ApiResponse(RetCode.ERROR_PARAMS, "必填参数不能为空！");
+        }
         UserEntity entity = GlobalHolder.getCurrentLoginUser();
         itemSkuEntity.setUserId(entity.getId());
         return new ApiResponse(goodsService.save(itemSkuEntity));

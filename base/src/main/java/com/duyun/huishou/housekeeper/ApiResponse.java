@@ -16,7 +16,7 @@ public class ApiResponse<T> {
 
     public ApiResponse(){
         this.code = RetCode.OK;
-        this.msg = "";
+        this.msg = "SUCCESS";
     }
 
     /**
@@ -31,7 +31,7 @@ public class ApiResponse<T> {
 
     public ApiResponse(T data){
         this.code = RetCode.OK;
-        this.msg = "";
+        this.msg = "SUCCESS";
         this.data = data;
     }
 

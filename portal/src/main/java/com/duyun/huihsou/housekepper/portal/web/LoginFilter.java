@@ -1,8 +1,11 @@
 package com.duyun.huihsou.housekepper.portal.web;
 
+import com.alibaba.fastjson.JSON;
 import com.duyun.huihsou.housekepper.portal.gloabal.GlobalHolder;
 import com.duyun.huihsou.housekepper.portal.inteceptor.VisitorAccessible;
 import com.duyun.huihsou.housekepper.portal.service.user.UserService;
+import com.duyun.huishou.housekeeper.ApiResponse;
+import com.duyun.huishou.housekeeper.constants.RetCode;
 import com.duyun.huishou.housekeeper.po.UserEntity;
 import com.duyun.huishou.housekeeper.util.JWTVerifierUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -63,6 +66,8 @@ public class LoginFilter extends HandlerInterceptorAdapter {
                 }
                 GlobalHolder.setCurrentLoginUser(entity);
             } else {
+                ApiResponse tokenValidResponse = new ApiResponse(RetCode.TOKEN_VALID, "ticket error", null);
+                response.getWriter().print(JSON.toJSON(tokenValidResponse));
                 return false;
             }
             return true;

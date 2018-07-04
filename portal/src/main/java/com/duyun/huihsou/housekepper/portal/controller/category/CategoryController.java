@@ -4,6 +4,7 @@ import com.duyun.huihsou.housekepper.portal.inteceptor.VisitorAccessible;
 import com.duyun.huihsou.housekepper.portal.service.category.CategoryService;
 import com.duyun.huihsou.housekepper.portal.vo.CategoryVO;
 import com.duyun.huishou.housekeeper.ApiResponse;
+import com.duyun.huishou.housekeeper.constants.RetCode;
 import com.duyun.huishou.housekeeper.po.CategoryEntity;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,11 @@ public class CategoryController {
     @VisitorAccessible
     @RequestMapping(value = "/list", method = RequestMethod.POST, produces="application/json")
     public ApiResponse<List<CategoryEntity>> getList(@RequestBody Map<String, Object> map) {
-        List<CategoryEntity> listEntity = categoryService.getCategoryByParentId((Integer) map.get("parentId"));
+        Integer parentId = (Integer) map.get("parentId");
+        if (parentId==null) {
+            return  new ApiResponse(RetCode.ERROR_PARAMS, "必填参数不能为空！");
+        }
+        List<CategoryEntity> listEntity = categoryService.getCategoryByParentId(parentId);
         List<CategoryVO> list = new ArrayList<>();
         listEntity.forEach(obj->{
             CategoryVO vo = new CategoryVO();

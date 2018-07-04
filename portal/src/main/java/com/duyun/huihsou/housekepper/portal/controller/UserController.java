@@ -5,6 +5,7 @@ import com.duyun.huihsou.housekepper.portal.inteceptor.VisitorAccessible;
 import com.duyun.huihsou.housekepper.portal.request.UserParams;
 import com.duyun.huihsou.housekepper.portal.service.user.UserService;
 import com.duyun.huishou.housekeeper.ApiResponse;
+import com.duyun.huishou.housekeeper.constants.RetCode;
 import com.duyun.huishou.housekeeper.po.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,6 +27,9 @@ public class UserController {
     @VisitorAccessible
     @RequestMapping(value = "/login",  method = RequestMethod.POST, produces="application/json")
     public ApiResponse<String> login(@RequestBody UserParams params) {
+        if (params.getMobile()==null||params.getPassword()==null) {
+            return  new ApiResponse(RetCode.ERROR_PARAMS, "必填参数不能为空！");
+        }
         String token = userService.login(params);
         return new ApiResponse<>(token);
     }
@@ -33,6 +37,10 @@ public class UserController {
     @VisitorAccessible
     @RequestMapping(value = "/register", method = RequestMethod.POST, produces="application/json")
     public ApiResponse<Boolean> register(@RequestBody UserParams params) {
+        if (params.getMobile()==null||params.getNewPwd1()==null||params.getNewPwd2()==null
+                ||params.getVerifyCode()==null) {
+            return  new ApiResponse(RetCode.ERROR_PARAMS, "必填参数不能为空！");
+        }
         userService.register(params);
         return new ApiResponse<>();
     }
@@ -44,6 +52,10 @@ public class UserController {
      */
     @RequestMapping(value = "/repwd", method = RequestMethod.POST, produces="application/json")
     public ApiResponse<Boolean> repwd(@RequestBody UserParams params) {
+        if (params.getMobile()==null||params.getNewPwd1()==null||params.getNewPwd2()==null
+                ||params.getVerifyCode()==null) {
+            return  new ApiResponse(RetCode.ERROR_PARAMS, "必填参数不能为空！");
+        }
         UserEntity userEntity = GlobalHolder.getCurrentLoginUser();
         Boolean result = userService.repwd(params, userEntity);
         return new ApiResponse<>(result);

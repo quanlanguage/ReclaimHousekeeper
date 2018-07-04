@@ -1,7 +1,5 @@
 package com.duyun.huihsou.housekepper.portal.vo;
 
-import com.duyun.huishou.housekeeper.po.AttributeDetailEntity;
-
 import java.util.List;
 
 public class AttributeInfoVO {
@@ -13,7 +11,7 @@ public class AttributeInfoVO {
 
     private String attributeName;
 
-    private List<AttributeDetailEntity> attributeDetailEntityList;
+    private List<AttributeDetailVO> attributeDetailVOList;
 
     public Integer getId() {
         return id;
@@ -47,11 +45,11 @@ public class AttributeInfoVO {
         this.attributeName = attributeName;
     }
 
-    public List<AttributeDetailEntity> getAttributeDetailEntityList() {
-        return attributeDetailEntityList;
+    public List<AttributeDetailVO> getAttributeDetailVOList() {
+        return attributeDetailVOList;
     }
 
-    public void setAttributeDetailEntityList(List<AttributeDetailEntity> attributeDetailEntityList) {
-        this.attributeDetailEntityList = attributeDetailEntityList;
+    public void setAttributeDetailVOList(List<AttributeDetailVO> attributeDetailVOList) {
+        this.attributeDetailVOList = attributeDetailVOList;
     }
 }

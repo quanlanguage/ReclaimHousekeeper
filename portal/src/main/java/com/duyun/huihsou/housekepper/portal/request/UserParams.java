@@ -1,21 +1,15 @@
 package com.duyun.huihsou.housekepper.portal.request;
 
 public class UserParams {
-    private Integer id;
+
 
     private String openId;
-
-    private String headUrl;
-
-    private Integer version;
 
     private String password;
 
     private String newPwd1;
 
     private String newPwd2;
-
-    private String salt;
 
     private String mobile;
 
@@ -27,30 +21,6 @@ public class UserParams {
 
     public void setOpenId(String openId) {
         this.openId = openId;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getHeadUrl() {
-        return headUrl;
-    }
-
-    public void setHeadUrl(String headUrl) {
-        this.headUrl = headUrl;
-    }
-
-    public Integer getVersion() {
-        return version;
-    }
-
-    public void setVersion(Integer version) {
-        this.version = version;
     }
 
     public String getPassword() {
@@ -75,14 +45,6 @@ public class UserParams {
 
     public void setNewPwd2(String newPwd2) {
         this.newPwd2 = newPwd2;
-    }
-
-    public String getSalt() {
-        return salt;
-    }
-
-    public void setSalt(String salt) {
-        this.salt = salt;
     }
 
     public String getMobile() {
