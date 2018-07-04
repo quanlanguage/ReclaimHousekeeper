@@ -1,7 +1,7 @@
 package com.duyun.huihsou.housekepper.portal.controller.order;
 
 import com.duyun.huihsou.housekepper.portal.gloabal.GlobalHolder;
-import com.duyun.huihsou.housekepper.portal.response.OrderVO;
+import com.duyun.huihsou.housekepper.portal.vo.OrderVO;
 import com.duyun.huihsou.housekepper.portal.service.order.OrderService;
 import com.duyun.huishou.housekeeper.ApiResponse;
 import com.duyun.huishou.housekeeper.po.OrderEntity;

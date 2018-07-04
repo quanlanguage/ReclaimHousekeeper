@@ -1,6 +1,6 @@
 package com.duyun.huihsou.housekepper.portal.service.order;
 
-import com.duyun.huihsou.housekepper.portal.response.OrderVO;
+import com.duyun.huihsou.housekepper.portal.vo.OrderVO;
 import com.duyun.huihsou.housekepper.portal.service.AbstractBaseService;
 import com.duyun.huihsou.housekepper.portal.service.attribute.AttributeService;
 import com.duyun.huishou.housekeeper.dto.OrderDTO;
