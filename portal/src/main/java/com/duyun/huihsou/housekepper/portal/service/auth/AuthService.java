@@ -3,6 +3,7 @@ package com.duyun.huihsou.housekepper.portal.service.auth;
 
 import com.alibaba.fastjson.JSONObject;
 import com.duyun.huihsou.housekepper.portal.service.user.UserService;
+import com.duyun.huihsou.housekepper.portal.vo.CheckAccessVO;
 import com.duyun.huihsou.housekepper.portal.vo.ResData;
 import com.duyun.huishou.housekeeper.util.HttpTool;
 import com.duyun.huishou.housekeeper.util.RedisTool;
@@ -14,8 +15,6 @@ import org.springframework.stereotype.Service;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author albert
@@ -51,7 +50,8 @@ public class AuthService {
      * @return
      */
 
-    public String getTicket(String code){
+    public CheckAccessVO getTicket(String code){
+        CheckAccessVO vo = new CheckAccessVO();
         ResData data = getSessionKey(code);
         if(data != null){
 //            userService.processSessionData(data);
@@ -71,19 +71,14 @@ public class AuthService {
 //                String ticket = data.getTicket();
 //                return ticket;
 //            }
-            net.sf.json.JSONObject json = new net.sf.json.JSONObject();
-            json.put("openId", data.getOpenId());
-//            json.put("userId", userEntity.getId());
+
             if (data.getTicket() != null){
-                List<String> keys = redisTool.like("*" + data.getOpenId());
-                if (keys.size() != 0){
-                    redisTool.remove(keys);
-                }
-                redisTool.set(data.getTicket(), json.toString(),
-                        60 * 60 * 24 * 20, TimeUnit.SECONDS);
+                vo.setOpenId(data.getOpenId());
             }
             String ticket = data.getTicket();
-            return ticket;
+            vo.setTicket(ticket);
+
+            return vo;
         }
         return null;
 

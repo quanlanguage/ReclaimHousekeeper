@@ -3,6 +3,7 @@ package com.duyun.huihsou.housekepper.portal.controller;
 
 import com.duyun.huihsou.housekepper.portal.service.auth.AuthService;
 import com.duyun.huihsou.housekepper.portal.service.user.UserService;
+import com.duyun.huihsou.housekepper.portal.vo.CheckAccessVO;
 import com.duyun.huishou.housekeeper.ApiResponse;
 import com.duyun.huishou.housekeeper.constants.RetCode;
 import org.apache.commons.lang3.StringUtils;
@@ -42,15 +43,15 @@ public class AuthController {
      */
 
     @RequestMapping(value = "/check_access", method = RequestMethod.GET)
-    public ApiResponse noLoginAccess(String code){
+    public ApiResponse<CheckAccessVO> noLoginAccess(String code){
         if (StringUtils.isEmpty(code)) {
             return new ApiResponse<>(RetCode.REQUEST_ERROR, "请求用户code为空", null);
         }
-        String ticket = authService.getTicket(code);
-        if (null == ticket){
+        CheckAccessVO vo = authService.getTicket(code);
+        if (null == vo.getTicket()){
             return new ApiResponse(RetCode.NOT_FOUND,  "授权失败，请重试");
         }
-        return new ApiResponse(ticket);
+        return new ApiResponse(vo);
     }
 }
 
