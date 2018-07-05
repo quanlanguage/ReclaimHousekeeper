@@ -4,7 +4,6 @@ package com.duyun.huihsou.housekepper.portal.service.auth;
 import com.alibaba.fastjson.JSONObject;
 import com.duyun.huihsou.housekepper.portal.service.user.UserService;
 import com.duyun.huihsou.housekepper.portal.vo.ResData;
-import com.duyun.huishou.housekeeper.po.UserEntity;
 import com.duyun.huishou.housekeeper.util.HttpTool;
 import com.duyun.huishou.housekeeper.util.RedisTool;
 import lombok.extern.slf4j.Slf4j;
@@ -55,23 +54,36 @@ public class AuthService {
     public String getTicket(String code){
         ResData data = getSessionKey(code);
         if(data != null){
-            userService.processSessionData(data);
-            UserEntity userEntity = userService.queryByOpenId(data.getOpenId());
-            if (userEntity != null){
-                net.sf.json.JSONObject json = new net.sf.json.JSONObject();
-                json.put("openId", data.getOpenId());
-                json.put("userId", userEntity.getId());
-                if (data.getTicket() != null){
-                    List<String> keys = redisTool.like("*" + userEntity.getOpenId());
-                    if (keys.size() != 0){
-                        redisTool.remove(keys);
-                    }
-                    redisTool.set(data.getTicket(), json.toString(),
-                            60 * 60 * 24 * 20, TimeUnit.SECONDS);
+//            userService.processSessionData(data);
+//            UserEntity userEntity = userService.queryByOpenId(data.getOpenId());
+//            if (userEntity != null){
+//                net.sf.json.JSONObject json = new net.sf.json.JSONObject();
+//                json.put("openId", data.getOpenId());
+//                json.put("userId", userEntity.getId());
+//                if (data.getTicket() != null){
+//                    List<String> keys = redisTool.like("*" + userEntity.getOpenId());
+//                    if (keys.size() != 0){
+//                        redisTool.remove(keys);
+//                    }
+//                    redisTool.set(data.getTicket(), json.toString(),
+//                            60 * 60 * 24 * 20, TimeUnit.SECONDS);
+//                }
+//                String ticket = data.getTicket();
+//                return ticket;
+//            }
+            net.sf.json.JSONObject json = new net.sf.json.JSONObject();
+            json.put("openId", data.getOpenId());
+//            json.put("userId", userEntity.getId());
+            if (data.getTicket() != null){
+                List<String> keys = redisTool.like("*" + data.getOpenId());
+                if (keys.size() != 0){
+                    redisTool.remove(keys);
                 }
-                String ticket = data.getTicket();
-                return ticket;
+                redisTool.set(data.getTicket(), json.toString(),
+                        60 * 60 * 24 * 20, TimeUnit.SECONDS);
             }
+            String ticket = data.getTicket();
+            return ticket;
         }
         return null;
 

@@ -7,6 +7,7 @@ import com.duyun.huihsou.housekepper.portal.service.user.UserService;
 import com.duyun.huishou.housekeeper.ApiResponse;
 import com.duyun.huishou.housekeeper.constants.RetCode;
 import com.duyun.huishou.housekeeper.po.UserEntity;
+import com.duyun.huishou.housekeeper.util.MobileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +30,8 @@ public class UserController {
     public ApiResponse<String> login(@RequestBody UserParams params) {
         if (params.getMobile()==null||params.getPassword()==null) {
             return  new ApiResponse(RetCode.ERROR_PARAMS, "必填参数不能为空！");
+        } else if (!MobileUtil.isMobile(params.getMobile())) {
+            return  new ApiResponse(RetCode.ERROR_PARAMS, "请输入正确手机号！");
         }
         String token = userService.login(params);
         return new ApiResponse<>(token);
@@ -40,6 +43,8 @@ public class UserController {
         if (params.getMobile()==null||params.getNewPwd1()==null||params.getNewPwd2()==null
                 ||params.getVerifyCode()==null) {
             return  new ApiResponse(RetCode.ERROR_PARAMS, "必填参数不能为空！");
+        } else if (!MobileUtil.isMobile(params.getMobile())) {
+            return  new ApiResponse(RetCode.ERROR_PARAMS, "请输入正确手机号！");
         }
         userService.register(params);
         return new ApiResponse<>();
@@ -55,6 +60,8 @@ public class UserController {
         if (params.getMobile()==null||params.getNewPwd1()==null||params.getNewPwd2()==null
                 ||params.getVerifyCode()==null) {
             return  new ApiResponse(RetCode.ERROR_PARAMS, "必填参数不能为空！");
+        } else if (!MobileUtil.isMobile(params.getMobile())) {
+            return  new ApiResponse(RetCode.ERROR_PARAMS, "请输入正确手机号！");
         }
         UserEntity userEntity = GlobalHolder.getCurrentLoginUser();
         Boolean result = userService.repwd(params, userEntity);
