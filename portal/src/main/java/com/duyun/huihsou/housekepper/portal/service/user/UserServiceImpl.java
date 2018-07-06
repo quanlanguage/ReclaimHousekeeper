@@ -57,9 +57,9 @@ public class UserServiceImpl extends AbstractBaseService<UserEntity> implements 
 
     @Override
     public String login(UserParams params) {
-        UserEntity entity = userMapper.selectByOpenId(params.getOpenId());
-        if (!entity.getMobile().equals(params.getMobile())) {
-            throw new RuntimeException("请使用本微信绑定账号登录！");
+        UserEntity entity = userMapper.selectByMobile(params.getMobile());
+        if (entity == null) {
+            throw new RuntimeException("用户不存在，请先注册！");
         }
         String salt = entity.getSalt();
         String pwd = EncryptionUtils.encryptPasswordBySalt(params.getPassword(), salt);
@@ -79,22 +79,19 @@ public class UserServiceImpl extends AbstractBaseService<UserEntity> implements 
         if (!params.getNewPwd1().equals(params.getNewPwd2())) {
             throw new RuntimeException("两次输入密码不一致，请重新输入！");
         }
-        UserEntity userEntity = userMapper.selectByOpenId(params.getOpenId());
-        if (userEntity == null) {
-            throw new RuntimeException("服务器内部异常，请稍后再试！");
-        }
+        UserEntity userEntity = new UserEntity();
         String salt = EncryptionUtils.generateSalt();
         String password = EncryptionUtils.encryptPasswordBySalt(params.getNewPwd2(), salt);
         userEntity.setMobile(params.getMobile());
         userEntity.setSalt(salt);
         userEntity.setPassword(password);
-        userMapper.updateByPrimaryKeySelective(userEntity);
+        userEntity.setOpenId(params.getOpenId());
+        userMapper.insert(userEntity);
     }
 
     @Override
     public Boolean repwd(UserParams params, UserEntity userEntity) {
-        UserEntity object = userMapper.selectByMobile(params.getMobile());
-        if ( !object.getMobile().equals(userEntity.getMobile())) {
+        if ( !params.getMobile().equals(userEntity.getMobile())) {
             throw new RuntimeException("该手机号与当前登录手机号不一致，请重新输入！");
         }
         if (!params.getNewPwd1().equals(params.getNewPwd2())) {

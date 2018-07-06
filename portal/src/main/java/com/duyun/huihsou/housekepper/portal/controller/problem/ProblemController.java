@@ -2,7 +2,7 @@ package com.duyun.huihsou.housekepper.portal.controller.problem;
 
 import com.duyun.huihsou.housekepper.portal.inteceptor.VisitorAccessible;
 import com.duyun.huihsou.housekepper.portal.request.BaseParams;
-import com.duyun.huihsou.housekepper.portal.response.ProblemVO;
+import com.duyun.huihsou.housekepper.portal.vo.ProblemVO;
 import com.duyun.huihsou.housekepper.portal.service.problem.ProblemService;
 import com.duyun.huishou.housekeeper.ApiResponse;
 import com.duyun.huishou.housekeeper.po.CategoryEntity;

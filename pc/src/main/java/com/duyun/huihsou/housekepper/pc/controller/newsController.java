@@ -4,7 +4,6 @@ package com.duyun.huihsou.housekepper.pc.controller;
 import com.alibaba.fastjson.JSON;
 import com.duyun.huihsou.housekepper.pc.service.news.NewsService;
 import com.duyun.huihsou.housekepper.pc.tool.HTMLSpirit;
-import com.duyun.huihsou.housekepper.pc.tool.TimeTool;
 import com.duyun.huishou.housekeeper.ApiResponse;
 import com.duyun.huishou.housekeeper.constants.RetCode;
 import com.duyun.huishou.housekeeper.po.NewsEntity;
@@ -15,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -73,7 +70,7 @@ public class newsController {
             Integer id,
             String title,
             String content,
-            Byte isTop,
+            Integer isTop,
             long insertTime) throws ParseException {
         try {
 
@@ -103,7 +100,7 @@ public class newsController {
     }
 
     @RequestMapping(value = "/updateNewsPage", method = RequestMethod.POST)
-    public Object updateNewsPage(Integer id,String title,String content,Byte isTop,Long lastUpdateTime){
+    public Object updateNewsPage(Integer id,String title,String content,Integer isTop,Long lastUpdateTime){
         try {
             if (newsService.insertOneNewPage(new NewsEntity(id, title, content, isTop, lastUpdateTime)) == 1) {
                 return JSON.toJSON(new ApiResponse(RetCode.OK, "更新数据成功"));

@@ -15,7 +15,7 @@ public class OrderEntity {
 
     private Long takePartTime;
 
-    private Byte orderStatus;
+    private Integer orderStatus;
 
     private String expressNo;
 
@@ -81,11 +81,11 @@ public class OrderEntity {
         this.takePartTime = takePartTime;
     }
 
-    public Byte getOrderStatus() {
+    public Integer getOrderStatus() {
         return orderStatus;
     }
 
-    public void setOrderStatus(Byte orderStatus) {
+    public void setOrderStatus(Integer orderStatus) {
         this.orderStatus = orderStatus;
     }
 

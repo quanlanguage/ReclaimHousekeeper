@@ -1,4 +1,4 @@
-package com.duyun.huihsou.housekepper.portal.response;
+package com.duyun.huihsou.housekepper.portal.vo;
 
 import java.io.Serializable;
 

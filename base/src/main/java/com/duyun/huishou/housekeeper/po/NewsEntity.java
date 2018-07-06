@@ -8,7 +8,7 @@ public class NewsEntity {
 
     //没有重新构造img 函数
     // 重写构造方法
-    public NewsEntity(Integer id,String title,String content,Byte isTop,Long insertTime,Long lastUpdateTime){
+    public NewsEntity(Integer id,String title,String content,Integer isTop,Long insertTime,Long lastUpdateTime){
         setId(id);
         setContent(content);
         setTitle(title);
@@ -18,7 +18,7 @@ public class NewsEntity {
     }
 
     //没有重新构造img 函数
-    public NewsEntity(Integer id,String title,String content,Byte isTop,Long lastUpdateTime){
+    public NewsEntity(Integer id,String title,String content,Integer isTop,Long lastUpdateTime){
         setId(id);
         setContent(content);
         setTitle(title);
@@ -34,7 +34,7 @@ public class NewsEntity {
     private String content;
     private String img;
 
-    private Byte isTop;
+    private Integer isTop;
 
     private Long insertTime;
 
@@ -64,11 +64,11 @@ public class NewsEntity {
         this.content = content == null ? null : content.trim();
     }
 
-    public Byte getIsTop() {
+    public Integer getIsTop() {
         return isTop;
     }
 
-    public void setIsTop(Byte isTop) {
+    public void setIsTop(Integer isTop) {
         this.isTop = isTop;
     }
 

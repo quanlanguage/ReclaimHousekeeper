@@ -1,6 +1,7 @@
 package com.duyun.huihsou.housekepper.portal.controller.order;
 
 import com.duyun.huihsou.housekepper.portal.gloabal.GlobalHolder;
+import com.duyun.huihsou.housekepper.portal.vo.OrderVO;
 import com.duyun.huihsou.housekepper.portal.service.order.OrderService;
 import com.duyun.huishou.housekeeper.ApiResponse;
 import com.duyun.huishou.housekeeper.po.OrderEntity;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * @author haoshijing
@@ -35,5 +38,13 @@ public class OrderController {
             orderService.updateByPrimaryKeySelective(orderEntity);
         }
         return new ApiResponse();
+    }
+
+    @RequestMapping(value = "/getorder", method = RequestMethod.POST, produces="application/json")
+    public ApiResponse<List<OrderVO>> getOrder(@RequestBody OrderEntity orderEntity) {
+        UserEntity entity = GlobalHolder.getCurrentLoginUser();
+
+        List<OrderVO> list = orderService.getOrderInfo(entity.getId(), orderEntity.getOrderStatus());
+        return new ApiResponse<>(list);
     }
 }

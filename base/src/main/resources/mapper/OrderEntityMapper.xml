@@ -15,6 +15,15 @@
     <result column="insert_time" property="insertTime" jdbcType="BIGINT" />
     <result column="last_update_time" property="lastUpdateTime" jdbcType="BIGINT" />
   </resultMap>
+  <resultMap id="OrderResultMap" type="com.duyun.huishou.housekeeper.dto.OrderDTO" >
+    <result column="id" property="orderId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="order_status" property="orderStatus" jdbcType="TINYINT" />
+    <result column="name" property="categoryName" jdbcType="VARCHAR" />
+    <result column="attribute_detailIds" property="attributeDetails" jdbcType="VARCHAR" />
+    <result column="last_update_time" property="lastUpdateTime" jdbcType="BIGINT" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+  </resultMap>
   <sql id="Base_Column_List" >
     id,user_id, sku_id, real_name, mobile, address, order_status, express_no, user_comment, insert_time, last_update_time
   </sql>
@@ -159,4 +168,25 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <!--getOrderInfo-->
+  <select id="getOrderInfo" resultMap="OrderResultMap">
+    select
+    o.id,
+    o.user_id,
+    o.order_status,
+    ca.name,
+    i.attribute_detailIds,
+    i.price,
+    o.last_update_time
+    from t_order as o
+    left join t_item_sku as i
+    on o.sku_id = i.id
+    left join t_category as ca
+    on i.category_id = ca.id
+    where
+    o.user_id = #{userId}
+    <if test="orderStatus!=null">
+      and o.order_status = #{orderStatus}
+    </if>
+  </select>
 </mapper>
