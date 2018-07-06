@@ -26,10 +26,10 @@ public class BannerConfigController {
     @RequestMapping(value = "/list", method = RequestMethod.POST, produces="application/json")
     public Object getList(@RequestBody BannerConfigEntity entity) {
         try {
-            return JSON.toJSON(new ApiResponse(bannerConfigService.getBannerConfigByConfition(entity)));
+            return new ApiResponse(bannerConfigService.getBannerConfigByConfition(entity));
         }catch(Exception e) {
             //System.out.println("异常信息为："+e.getMessage());
-            return JSON.toJSON(new ApiResponse(RetCode.NOT_FOUND,"请求失败或没有数据"));
+            return new ApiResponse(RetCode.NOT_FOUND,"请求失败或没有数据");
         }
 
     }
@@ -55,10 +55,10 @@ public class BannerConfigController {
             map.put("start",start);
             Integer problomCount=bannerConfigService.getCountbanner();
             map.put("size",size = size<= problomCount?size:problomCount);
-            return JSON.toJSON(new ApiResponse(bannerConfigService.selectItem(map)));
+            return new ApiResponse(bannerConfigService.selectItem(map));
         }catch(Exception e) {
             //System.out.println("异常信息为："+e.getMessage());
-            return JSON.toJSON(new ApiResponse(RetCode.NOT_FOUND,"请求失败或没有数据"));
+            return new ApiResponse(RetCode.NOT_FOUND,"请求失败或没有数据");
         }
 
     }
@@ -67,12 +67,12 @@ public class BannerConfigController {
     public Object delectbanner(Integer id){
         try {
             if (bannerConfigService.delectOneBanprom(id) == 1) {
-                return JSON.toJSON(new ApiResponse(RetCode.OK, "删除数据成功"));
+                return new ApiResponse(RetCode.OK, "删除数据成功");
             } else {
-                return JSON.toJSON(new ApiResponse(RetCode.NOT_FOUND, "删除数据失败"));
+                return new ApiResponse(RetCode.NOT_FOUND, "删除数据失败");
             }
         } catch (Exception e){
-            return JSON.toJSON(new ApiResponse(RetCode.NOT_FOUND, "请求数据格式错误"));
+            return new ApiResponse(RetCode.NOT_FOUND, "请求数据格式错误");
         }
     }
 
@@ -81,12 +81,12 @@ public class BannerConfigController {
     public Object insertBanner(@RequestBody BannerConfigEntity bannerConfig){
         try {
             if (bannerConfigService.insert(bannerConfig) == 1) {
-                return JSON.toJSON(new ApiResponse(RetCode.OK, "插入数据成功"));
+                return new ApiResponse(RetCode.OK, "插入数据成功");
             } else {
-                return JSON.toJSON(new ApiResponse(RetCode.NOT_FOUND, "请求插入数据失败"));
+                return new ApiResponse(RetCode.NOT_FOUND, "请求插入数据失败");
             }
         } catch (Exception e){
-            return JSON.toJSON(new ApiResponse(RetCode.NOT_FOUND, "POSt请求数据格式错误"));
+            return new ApiResponse(RetCode.NOT_FOUND, "POSt请求数据格式错误");
         }
     }
 
@@ -95,12 +95,12 @@ public class BannerConfigController {
     public Object updateBanner(@RequestBody BannerConfigEntity bannerConfig){
         try {
             if (bannerConfigService.updateByPrimaryKeySelective(bannerConfig) == 1) {
-                return JSON.toJSON(new ApiResponse(RetCode.OK, "更新数据成功"));
+                return new ApiResponse(RetCode.OK, "更新数据成功");
             } else {
-                return JSON.toJSON(new ApiResponse(RetCode.NOT_FOUND, "更新数据失败"));
+                return new ApiResponse(RetCode.NOT_FOUND, "更新数据失败");
             }
         } catch (Exception e){
-            return JSON.toJSON(new ApiResponse(RetCode.NOT_FOUND, "POSt请求数据格式错误"));
+            return new ApiResponse(RetCode.NOT_FOUND, "POSt请求数据格式错误");
         }
     }
 

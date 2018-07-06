@@ -24,9 +24,9 @@ public class userController {
     @RequestMapping(value = "/login",  method = RequestMethod.GET, produces="application/json")
     public Object login(@RequestBody UserParams params) {
         try{
-            return JSON.toJSON(new ApiResponse<>(userService.login(params)));
+            return new ApiResponse<>(userService.login(params));
         } catch (Exception e){
-            return JSON.toJSON(new ApiResponse(RetCode.NOT_FOUND, "token失败"));
+            return new ApiResponse(RetCode.NOT_FOUND, "token失败");
         }
 
     }
@@ -35,9 +35,9 @@ public class userController {
     @RequestMapping(value = "/register", method = RequestMethod.GET, produces="application/json")
     public Object register(@RequestBody UserParams params) {
         try {
-            return JSON.toJSON(new ApiResponse(RetCode.OK, userService.register(params)));
+            return new ApiResponse(RetCode.OK, userService.register(params));
         } catch (Exception e) {
-            return JSON.toJSON(new ApiResponse(RetCode.NOT_FOUND, "token失败"));
+            return new ApiResponse(RetCode.NOT_FOUND, "token失败");
         }
     }
 
@@ -49,9 +49,9 @@ public class userController {
     @RequestMapping(value = "/repwd", method = RequestMethod.POST, produces="application/json")
     public Object repwd(@RequestBody UserParams params) {
         try {
-            return JSON.toJSON(new ApiResponse<>(userService.repwd(params, GlobalHolder.getCurrentLoginUser())));
+            return new ApiResponse<>(userService.repwd(params, GlobalHolder.getCurrentLoginUser()));
         }catch (Exception e) {
-            return JSON.toJSON(new ApiResponse(RetCode.NOT_FOUND, "token失败"));
+            return new ApiResponse(RetCode.NOT_FOUND, "token失败");
         }
     }
 

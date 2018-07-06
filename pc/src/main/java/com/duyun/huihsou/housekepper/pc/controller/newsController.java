@@ -30,7 +30,7 @@ public class newsController {
 
     @RequestMapping(value = "/getNewShowlist", method = RequestMethod.GET)
     public Object getNewShowlist(Integer start,Integer newsPageSize,Integer cutoutLength) {
-        try {
+
             Map map = new HashMap();
             map.put("start", start <= 0 ? 0 : start);
             map.put("size", newsPageSize < 0 ? 10 : newsPageSize);
@@ -46,22 +46,17 @@ public class newsController {
             // 页数
             reMap.put("PageNumber",pageNumber%newsPageSize>0?pageNumber/newsPageSize +1 :pageNumber/newsPageSize);
             reMap.put("list",newLitem);
-            return JSON.toJSON(new  ApiResponse(reMap));
-        }
-        catch(Exception e) {
-            //System.out.println("异常信息为："+e.getMessage());
-            return JSON.toJSON(new ApiResponse(RetCode.NOT_FOUND,"请求失败或没有数据"));
-        }
+            return new  ApiResponse(reMap);
+
     }
 
     @RequestMapping(value = "/getOneNewPage", method = RequestMethod.GET)
     public Object getNewShowlist(Integer pageid) {
         try {
-
-            return JSON.toJSON(new ApiResponse(RetCode.OK,"请求数据成功",newsService.selectByPrimaryKey(pageid)));
+            return new ApiResponse(RetCode.OK,"请求数据成功",newsService.selectByPrimaryKey(pageid));
         }catch (Exception e){
             System.out.println("异常");
-            return JSON.toJSON(new ApiResponse(RetCode.NOT_FOUND,"请求失败或没有数据"));
+            return new ApiResponse(RetCode.NOT_FOUND,"请求失败或没有数据");
         }
     }
     // 没有img
@@ -71,16 +66,17 @@ public class newsController {
             String title,
             String content,
             Integer isTop,
-            long insertTime) throws ParseException {
+            long insertTime,
+            String img) throws ParseException {
         try {
 
-            if (newsService.insertOneNewPage(new NewsEntity(id, title, content, isTop, insertTime, insertTime)) == 1) {
-                return JSON.toJSON(new ApiResponse(RetCode.OK, "插入数据成功"));
+            if (newsService.insertOneNewPage(new NewsEntity(id, title, content, isTop, insertTime, insertTime,img)) == 1) {
+                return new ApiResponse(RetCode.OK, "插入数据成功");
             } else {
-                return JSON.toJSON(new ApiResponse(RetCode.NOT_FOUND, "请求插入数据失败"));
+                return new ApiResponse(RetCode.NOT_FOUND, "请求插入数据失败");
             }
         } catch (Exception e){
-            return JSON.toJSON(new ApiResponse(RetCode.NOT_FOUND, "POSt请求数据格式错误"));
+            return new ApiResponse(RetCode.NOT_FOUND, "POSt请求数据格式错误");
         }
     }
 
@@ -90,25 +86,25 @@ public class newsController {
             Map map = new HashMap();
             map.put("id", pageid);
             if (newsService.StickNewsPage(map) == 1) {
-                return JSON.toJSON(new ApiResponse(RetCode.OK, "置顶数据成功"));
+                return new ApiResponse(RetCode.OK, "置顶数据成功");
             } else {
-                return JSON.toJSON(new ApiResponse(RetCode.NOT_FOUND, "数据置顶失败"));
+                return new ApiResponse(RetCode.NOT_FOUND, "数据置顶失败");
             }
         } catch (Exception e){
-            return JSON.toJSON(new ApiResponse(RetCode.NOT_FOUND, "请求数据格式错误"));
+            return new ApiResponse(RetCode.NOT_FOUND, "请求数据格式错误");
         }
     }
 
     @RequestMapping(value = "/updateNewsPage", method = RequestMethod.POST)
-    public Object updateNewsPage(Integer id,String title,String content,Integer isTop,Long lastUpdateTime){
+    public Object updateNewsPage(Integer id,String title,String content,Integer isTop,Long lastUpdateTime,String img){
         try {
-            if (newsService.insertOneNewPage(new NewsEntity(id, title, content, isTop, lastUpdateTime)) == 1) {
-                return JSON.toJSON(new ApiResponse(RetCode.OK, "更新数据成功"));
+            if (newsService.insertOneNewPage(new NewsEntity(id, title, content, isTop, lastUpdateTime,img)) == 1) {
+                return new ApiResponse(RetCode.OK, "更新数据成功");
             } else {
-                return JSON.toJSON(new ApiResponse(RetCode.NOT_FOUND, "更新数据失败"));
+                return new ApiResponse(RetCode.NOT_FOUND, "更新数据失败");
             }
         } catch (Exception e){
-            return JSON.toJSON(new ApiResponse(RetCode.NOT_FOUND, "POSt请求数据格式错误"));
+            return new ApiResponse(RetCode.NOT_FOUND, "POSt请求数据格式错误");
         }
     }
 
@@ -116,12 +112,12 @@ public class newsController {
     public Object deleteNewsPage(Integer pageid){
         try {
             if (newsService.deleteNewsByPageId(pageid) == 1) {
-                return JSON.toJSON(new ApiResponse(RetCode.OK, "删除数据成功"));
+                return new ApiResponse(RetCode.OK, "删除数据成功");
             } else {
-                return JSON.toJSON(new ApiResponse(RetCode.NOT_FOUND, "删除数据失败"));
+                return new ApiResponse(RetCode.NOT_FOUND, "删除数据失败");
             }
         } catch (Exception e){
-            return JSON.toJSON(new ApiResponse(RetCode.NOT_FOUND, "请求数据格式错误"));
+            return new ApiResponse(RetCode.NOT_FOUND, "请求数据格式错误");
         }
     }
 }

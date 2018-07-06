@@ -40,10 +40,10 @@ public class CategoryController {
             }
             map.put("size",size=size<=parent_idCount?size:parent_idCount);
 
-            return  JSON.toJSON(new ApiResponse(categoryService.getCategoryList(map)));
+            return  new ApiResponse(categoryService.getCategoryList(map));
         }catch(Exception e) {
             //System.out.println("异常信息为："+e.getMessage());
-            return JSON.toJSON(new ApiResponse(RetCode.NOT_FOUND,"请求失败或没有数据"));
+            return new ApiResponse(RetCode.NOT_FOUND,"请求失败或没有数据");
         }
     }
 
@@ -51,13 +51,13 @@ public class CategoryController {
     public Object InsterOneCateory(@RequestBody CategoryEntity categoryEntity) {
         try {
             if (categoryService.insert(categoryEntity) == 1) {
-                return JSON.toJSON(new ApiResponse(RetCode.OK, "插入数据成功"));
+                return new ApiResponse(RetCode.OK, "插入数据成功");
             } else {
-                return JSON.toJSON(new ApiResponse(RetCode.NOT_FOUND, "请求插入数据失败"));
+                return new ApiResponse(RetCode.NOT_FOUND, "请求插入数据失败");
             }
         }catch(Exception e) {
             //System.out.println("异常信息为："+e.getMessage());
-            return JSON.toJSON(new ApiResponse(RetCode.NOT_FOUND,"请求失败或没有数据"));
+            return new ApiResponse(RetCode.NOT_FOUND,"请求失败或没有数据");
         }
     }
 
@@ -66,13 +66,13 @@ public class CategoryController {
     public Object updateBanner(@RequestBody CategoryEntity categoryEntity){
         try {
             if (categoryService.updateByPrimaryKeySelective(categoryEntity) == 1) {
-                return JSON.toJSON(new ApiResponse(RetCode.OK, "更新数据成功"));
+                return new ApiResponse(RetCode.OK, "更新数据成功");
             } else {
-                return JSON.toJSON(new ApiResponse(RetCode.NOT_FOUND, "更新数据失败"));
+                return new ApiResponse(RetCode.NOT_FOUND, "更新数据失败");
             }
         }catch(Exception e) {
             //System.out.println("异常信息为："+e.getMessage());
-            return JSON.toJSON(new ApiResponse(RetCode.NOT_FOUND,"请求失败或没有数据"));
+            return new ApiResponse(RetCode.NOT_FOUND,"请求失败或没有数据");
         }
     }
 
@@ -81,12 +81,12 @@ public class CategoryController {
     public Object delectbanner(Integer id){
         try {
             if (categoryService.deleteByPrimaryKey(id) == 1) {
-                return JSON.toJSON(new ApiResponse(RetCode.OK, "删除数据成功"));
+                return new ApiResponse(RetCode.OK, "删除数据成功");
             } else {
-                return JSON.toJSON(new ApiResponse(RetCode.NOT_FOUND, "删除数据失败"));
+                return new ApiResponse(RetCode.NOT_FOUND, "删除数据失败");
             }
         } catch (Exception e){
-            return JSON.toJSON(new ApiResponse(RetCode.NOT_FOUND, "请求数据格式错误"));
+            return new ApiResponse(RetCode.NOT_FOUND, "请求数据格式错误");
         }
     }
 
