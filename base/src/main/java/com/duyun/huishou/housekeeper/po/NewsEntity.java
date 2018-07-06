@@ -5,25 +5,30 @@ import lombok.Data;
 @Data
 public class NewsEntity {
 
+    //默认构造方法
+    public NewsEntity(){}
 
-    //没有重新构造img 函数
+
     // 重写构造方法
-    public NewsEntity(Integer id,String title,String content,Integer isTop,Long insertTime,Long lastUpdateTime){
+    public NewsEntity(Integer id,String title,String content,Integer isTop,Long insertTime,Long lastUpdateTime,String img){
         setId(id);
         setContent(content);
         setTitle(title);
         setIsTop(isTop);
         setLastUpdateTime(lastUpdateTime);
         setInsertTime(insertTime);
+        setImg(img);
+
     }
 
-    //没有重新构造img 函数
-    public NewsEntity(Integer id,String title,String content,Integer isTop,Long lastUpdateTime){
+    //重写构造方法
+    public NewsEntity(Integer id,String title,String content,Integer isTop,Long lastUpdateTime,String img){
         setId(id);
         setContent(content);
         setTitle(title);
         setIsTop(isTop);
         setLastUpdateTime(lastUpdateTime);
+        setImg(img);
     }
 
 
@@ -32,6 +37,15 @@ public class NewsEntity {
     private String title;
 
     private String content;
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
     private String img;
 
     private Integer isTop;

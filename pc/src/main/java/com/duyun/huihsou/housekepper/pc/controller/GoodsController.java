@@ -29,7 +29,7 @@ public class GoodsController {
             return new ApiResponse(goodsService.save(itemSkuEntity));
         }catch(Exception e) {
             //System.out.println("异常信息为："+e.getMessage());
-            return JSON.toJSON(new ApiResponse(RetCode.NOT_FOUND,"未知错误"));
+            return new ApiResponse(RetCode.NOT_FOUND,"未知错误");
         }
     }
 

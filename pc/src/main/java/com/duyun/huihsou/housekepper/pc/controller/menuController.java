@@ -15,22 +15,6 @@ import java.util.Map;
 @RequestMapping("/menu")
 public class menuController {
 
-    @Autowired
-    private NewsService newsService;
-
-    /**
-     *  得到所有的菜单
-     *
-     * @param code
-     * @return   【object，object】
-     */
-    @RequestMapping(value = "/get_m1enuList", method = RequestMethod.GET)
-    public Object getMenuList(String code){
-        System.out.println("2222");
-
-
-        return null;
-    }
 
 
 

@@ -27,10 +27,10 @@ public class problemController {
     @RequestMapping(value = "/getproblem", method = RequestMethod.GET)
     public Object getNewShowlist(Integer id) {
         try {
-          return JSON.toJSON(new ApiResponse<>(problemService.delectOneByProble(id)));
+          return new ApiResponse<>(problemService.delectOneByProble(id));
         }catch(Exception e) {
             //System.out.println("异常信息为："+e.getMessage());
-            return JSON.toJSON(new ApiResponse(RetCode.NOT_FOUND,"请求失败或没有数据"));
+            return new ApiResponse(RetCode.NOT_FOUND,"请求失败或没有数据");
         }
     }
 
@@ -56,11 +56,11 @@ public class problemController {
             // 页数
             reMap.put("PageNumber",pageNumber%newsPageSize>0?pageNumber/newsPageSize +1 :pageNumber/newsPageSize);
             reMap.put("list",problemItemList);
-            return JSON.toJSON(new  ApiResponse(reMap));
+            return new  ApiResponse(reMap);
         }
         catch(Exception e) {
             //System.out.println("异常信息为："+e.getMessage());
-            return JSON.toJSON(new ApiResponse(RetCode.NOT_FOUND,"请求失败或没有数据"));
+            return new ApiResponse(RetCode.NOT_FOUND,"请求失败或没有数据");
         }
     }
 
@@ -70,12 +70,12 @@ public class problemController {
                                    Long insertTime){
         try {
             if (problemService.insert(new ProblemEntity(name, answer, insertTime, insertTime)) == 1) {
-                return JSON.toJSON(new ApiResponse(RetCode.OK, "插入数据成功"));
+                return new ApiResponse(RetCode.OK, "插入数据成功");
             } else {
-                return JSON.toJSON(new ApiResponse(RetCode.NOT_FOUND, "请求插入数据失败"));
+                return new ApiResponse(RetCode.NOT_FOUND, "请求插入数据失败");
             }
         } catch (Exception e){
-            return JSON.toJSON(new ApiResponse(RetCode.NOT_FOUND, "POSt请求数据格式错误"));
+            return new ApiResponse(RetCode.NOT_FOUND, "POSt请求数据格式错误");
         }
     }
 
@@ -104,12 +104,12 @@ public class problemController {
     public Object delectprobleById(Integer id){
         try {
             if (problemService.delectOneByProble(id) == 1) {
-                return JSON.toJSON(new ApiResponse(RetCode.OK, "删除数据成功"));
+                return new ApiResponse(RetCode.OK, "删除数据成功");
             } else {
-                return JSON.toJSON(new ApiResponse(RetCode.NOT_FOUND, "删除数据失败"));
+                return new ApiResponse(RetCode.NOT_FOUND, "删除数据失败");
             }
         } catch (Exception e){
-            return JSON.toJSON(new ApiResponse(RetCode.NOT_FOUND, "请求数据格式错误"));
+            return new ApiResponse(RetCode.NOT_FOUND, "请求数据格式错误");
         }
     }
 
