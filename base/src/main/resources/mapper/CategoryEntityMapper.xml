@@ -9,9 +9,10 @@
     <result column="category_type" property="categoryType" jdbcType="TINYINT" />
     <result column="insert_time" property="insertTime" jdbcType="BIGINT" />
     <result column="last_update_time" property="lastUpdateTime" jdbcType="BIGINT" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, name, icon, parent_id, category_type, insert_time, last_update_time
+    id, name, icon, parent_id, category_type, insert_time, last_update_time,price
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -26,10 +27,10 @@
   <insert id="insert" parameterType="com.duyun.huishou.housekeeper.po.CategoryEntity" >
     insert into t_category (id, name, icon, 
       parent_id, category_type, insert_time, 
-      last_update_time)
+      last_update_time,price)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, 
       #{parentId,jdbcType=INTEGER}, #{categoryType,jdbcType=TINYINT}, #{insertTime,jdbcType=BIGINT}, 
-      #{lastUpdateTime,jdbcType=BIGINT})
+      #{lastUpdateTime,jdbcType=BIGINT}, #{price,jdbcType=DECIMAL})
   </insert>
   <insert id="insertSelective" parameterType="com.duyun.huishou.housekeeper.po.CategoryEntity" >
     insert into t_category
@@ -55,6 +56,10 @@
       <if test="lastUpdateTime != null" >
         last_update_time,
       </if>
+      <if test="price != null" >
+        price,
+      </if>
+
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -77,6 +82,9 @@
       </if>
       <if test="lastUpdateTime != null" >
         #{lastUpdateTime,jdbcType=BIGINT},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
       </if>
     </trim>
   </insert>
@@ -101,6 +109,9 @@
       <if test="lastUpdateTime != null" >
         last_update_time = #{lastUpdateTime,jdbcType=BIGINT},
       </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -111,7 +122,8 @@
       parent_id = #{parentId,jdbcType=INTEGER},
       category_type = #{categoryType,jdbcType=TINYINT},
       insert_time = #{insertTime,jdbcType=BIGINT},
-      last_update_time = #{lastUpdateTime,jdbcType=BIGINT}
+      last_update_time = #{lastUpdateTime,jdbcType=BIGINT},
+      price = #{lastUpdateTime,jdbcType=DECIMAL}
     where id = #{id,jdbcType=INTEGER}
   </update>
 
