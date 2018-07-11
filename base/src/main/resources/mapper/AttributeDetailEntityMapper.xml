@@ -8,12 +8,12 @@
     <result column="insert_time" property="insertTime" jdbcType="BIGINT" />
     <result column="last_update_time" property="lastUpdateTime" jdbcType="BIGINT" />
     <result column="category_id" property="categoryId" jdbcType="INTEGER" />
-    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="percentage" property="percentage" jdbcType="DECIMAL" />
 
     <result column="assessment" property="assessment" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, value, assessment, attribute_id, insert_time, last_update_time, category_id, price
+    id, value, assessment, attribute_id, insert_time, last_update_time, category_id, percentage
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -28,10 +28,10 @@
   <insert id="insert" parameterType="com.duyun.huishou.housekeeper.po.AttributeDetailEntity" >
     insert into t_attribute_detail (id, value, assessment, attribute_id,
       insert_time, last_update_time, category_id, 
-      price)
+      percentage)
     values (#{id,jdbcType=INTEGER}, #{value,jdbcType=VARCHAR}, #{assessment,jdbcType=VARCHAR}, #{attributeId,jdbcType=INTEGER},
       #{insertTime,jdbcType=BIGINT}, #{lastUpdateTime,jdbcType=BIGINT}, #{categoryId,jdbcType=INTEGER}, 
-      #{price,jdbcType=DECIMAL})
+      #{percentage,jdbcType=DECIMAL})
   </insert>
   <insert id="insertSelective" parameterType="com.duyun.huishou.housekeeper.po.AttributeDetailEntity" >
     insert into t_attribute_detail
@@ -57,8 +57,8 @@
       <if test="categoryId != null" >
         category_id,
       </if>
-      <if test="price != null" >
-        price,
+      <if test="percentage != null" >
+        percentage,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -83,8 +83,8 @@
       <if test="categoryId != null" >
         #{categoryId,jdbcType=INTEGER},
       </if>
-      <if test="price != null" >
-        #{price,jdbcType=DECIMAL},
+      <if test="percentage != null" >
+        #{percentage,jdbcType=DECIMAL},
       </if>
     </trim>
   </insert>
@@ -109,8 +109,8 @@
       <if test="categoryId != null" >
         category_id = #{categoryId,jdbcType=INTEGER},
       </if>
-      <if test="price != null" >
-        price = #{price,jdbcType=DECIMAL},
+      <if test="percentage != null" >
+        percentage = #{percentage,jdbcType=DECIMAL},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -123,7 +123,7 @@
       insert_time = #{insertTime,jdbcType=BIGINT},
       last_update_time = #{lastUpdateTime,jdbcType=BIGINT},
       category_id = #{categoryId,jdbcType=INTEGER},
-      price = #{price,jdbcType=DECIMAL}
+      percentage = #{percentage,jdbcType=DECIMAL}
     where id = #{id,jdbcType=INTEGER}
   </update>
 
@@ -155,8 +155,8 @@
     <if test="categoryId != null" >
       and category_id = #{categoryId,jdbcType=INTEGER}
     </if>
-    <if test="price != null" >
-      and price = #{price,jdbcType=DECIMAL}
+    <if test="percentage != null" >
+      and percentage = #{percentage,jdbcType=DECIMAL}
     </if>
   </select>
 </mapper>

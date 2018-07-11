@@ -53,4 +53,5 @@ public interface NewsEntityMapper extends IBaseDao<NewsEntity>{
     @Override
     int deleteByPrimaryKey(Integer id);
 
+    Integer selectAllCount();
 }

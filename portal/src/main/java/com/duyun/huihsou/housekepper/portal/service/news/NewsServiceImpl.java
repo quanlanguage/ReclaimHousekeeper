@@ -41,4 +41,9 @@ public class NewsServiceImpl extends AbstractBaseService<NewsEntity> implements 
         map.put("pageSize",params.getPageSize() * params.getPageNo());
         return newsEntityMapper.selectAll(map);
     }
+
+    @Override
+    public Integer getNum() {
+        return newsEntityMapper.selectAllCount();
+    }
 }

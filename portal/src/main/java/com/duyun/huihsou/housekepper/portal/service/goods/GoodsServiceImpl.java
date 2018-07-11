@@ -1,7 +1,9 @@
 package com.duyun.huihsou.housekepper.portal.service.goods;
 
 import com.duyun.huihsou.housekepper.portal.service.attribute.AttributeService;
+import com.duyun.huihsou.housekepper.portal.service.category.CategoryService;
 import com.duyun.huishou.housekeeper.po.AttributeDetailEntity;
+import com.duyun.huishou.housekeeper.po.CategoryEntity;
 import com.duyun.huishou.housekeeper.po.ItemSkuEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,10 +22,13 @@ public class GoodsServiceImpl implements GoodsService {
 
     @Autowired
     private AttributeService attributeService;
+
+    @Autowired
+    private CategoryService categoryService;
     @Override
     public Integer save(ItemSkuEntity itemSkuEntity) {
-        getPrice(itemSkuEntity);
         if (itemSkuEntity.getId() == null){
+            getPrice(itemSkuEntity);
             itemSkuEntity.setInsertTime(System.currentTimeMillis());
             itemSkuEntity.setLastUpdateTime(System.currentTimeMillis());
             itemSkuService.insert(itemSkuEntity);
@@ -35,17 +40,24 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     private void getPrice(ItemSkuEntity itemSkuEntity) {
-        String[] attributeDetailArr = itemSkuEntity.getAttributeDetailids().split(",");
-        if (attributeDetailArr.length <= 0) {
-            return;
+        Integer categoryId = itemSkuEntity.getCategoryId();
+        CategoryEntity entity = categoryService.selectByPrimaryKey(categoryId);
+        if (entity != null){
+            String[] attributeDetailArr = itemSkuEntity.getAttributeDetailids().split(",");
+            if (attributeDetailArr.length <= 0) {
+                return;
+            }
+            final BigDecimal[] price = {entity.getPrice()};
+            Arrays.asList(attributeDetailArr).forEach(obj->{
+                Map<String,Object> map = new HashMap<>();
+                map.put("id", Integer.valueOf(obj));
+                List<AttributeDetailEntity> entityList = attributeService.getAttributeDetailByCondetion(map);
+            price[0] = price[0].subtract(price[0].multiply(entityList.get(0).getPercentage()));
+            });
+            itemSkuEntity.setPrice(price[0].setScale(2,BigDecimal.ROUND_DOWN));
+        } else {
+            throw new RuntimeException("产品不存在！");
         }
-        final BigDecimal[] price = {new BigDecimal("0")};
-        Arrays.asList(attributeDetailArr).forEach(obj->{
-            Map<String,Object> map = new HashMap<>();
-            map.put("id", Integer.valueOf(obj));
-            List<AttributeDetailEntity> entityList = attributeService.getAttributeDetailByCondetion(map);
-            price[0] = price[0].add(entityList.get(0).getPrice());
-        });
-        itemSkuEntity.setPrice(price[0]);
+
     }
 }

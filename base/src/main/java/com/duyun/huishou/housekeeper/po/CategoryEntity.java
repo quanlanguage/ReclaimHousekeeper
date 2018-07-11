@@ -1,5 +1,7 @@
 package com.duyun.huishou.housekeeper.po;
 
+import java.math.BigDecimal;
+
 public class CategoryEntity {
     private Integer id;
 
@@ -14,6 +16,19 @@ public class CategoryEntity {
     private Long insertTime;
 
     private Long lastUpdateTime;
+
+    /**
+     * 原价/产品出厂价
+     */
+    private BigDecimal price;
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
 
     public Integer getId() {
         return id;

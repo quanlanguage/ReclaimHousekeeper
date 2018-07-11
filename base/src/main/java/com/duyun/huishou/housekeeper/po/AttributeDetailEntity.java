@@ -15,7 +15,10 @@ public class AttributeDetailEntity {
 
     private Integer categoryId;
 
-    private BigDecimal price;
+    /**
+     * 折扣
+     */
+    private BigDecimal percentage;
 
     private String assessment;
 
@@ -75,11 +78,11 @@ public class AttributeDetailEntity {
         this.categoryId = categoryId;
     }
 
-    public BigDecimal getPrice() {
-        return price;
+    public BigDecimal getPercentage() {
+        return percentage;
     }
 
-    public void setPrice(BigDecimal price) {
-        this.price = price;
+    public void setPercentage(BigDecimal percentage) {
+        this.percentage = percentage;
     }
 }

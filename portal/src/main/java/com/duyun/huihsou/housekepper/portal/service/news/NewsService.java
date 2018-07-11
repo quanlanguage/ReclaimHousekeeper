@@ -16,4 +16,6 @@ import java.util.List;
 public interface NewsService extends IBaseService<NewsEntity> {
 
     List<NewsEntity> getAll(BaseParams params);
+
+    Integer getNum();
 }

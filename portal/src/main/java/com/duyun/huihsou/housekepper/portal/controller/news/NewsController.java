@@ -30,7 +30,8 @@ public class NewsController {
     @RequestMapping(value = "/list", method = RequestMethod.POST, produces="application/json")
     public ApiResponse<List<CategoryEntity>> getList(@RequestBody BaseParams params) {
         List<NewsEntity> list = newsService.getAll(params);
-        PageUtils pageUtils = new PageUtils(list,0, params.getPageSize(), params.getPageNo());
+        Integer count = newsService.getNum();
+        PageUtils pageUtils = new PageUtils(list,count, params.getPageSize(), params.getPageNo());
         return new ApiResponse(pageUtils);
     }
 }

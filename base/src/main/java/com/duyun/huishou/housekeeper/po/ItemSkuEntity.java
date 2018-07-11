@@ -8,7 +8,7 @@ public class ItemSkuEntity {
 
     private Integer categoryId;
 
-    private String name;
+    private String content;
 
     private String attributeDetailids;
 
@@ -44,12 +44,12 @@ public class ItemSkuEntity {
         this.categoryId = categoryId;
     }
 
-    public String getName() {
-        return name;
+    public String getContent() {
+        return content;
     }
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public String getAttributeDetailids() {
